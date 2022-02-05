@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('../../fonts/MapoFlowerIsland.ttf') format('truetype');
+}
+
+
+:root {
+    --main-background-color: #FEFEE3;
+
+    --color-note-top: #FD9781;
+    --color-note-middle: #F6E7CB;
+    --color-note-base: #A6C48A;
+
+    --color-signature-beige: #FEFEE3;
+    --color-signature-green: #2C6E49;
+    --color-signature-graygreen: #415D43;
+    --color-signature-darkgreen: #054A29;
+    --color-signature-blackgreen: #1F2421;
+
+    --color-fragrance-floral: #9C5379;
+    --color-fragrance-citrus: #959516;
+    --color-fragrance-fruity: #AD6B1D;
+    --color-fragrance-aquatic: #246D96;
+    --color-fragrance-spicy: #971D1D;
+    --color-fragrance-animalic: #522D52;
+    --color-fragrance-green: #136C13;
+    --color-fragrance-woody: #884413;
+    --color-fragrance-earthy: #1B8275;
+    --color-fragrance-herbar: #54821B;
+    --color-fragrance-musk: #821B77;
+    --color-fragrance-oriental: #7E2121;
+    --color-fragrance-balsamic: #301B82;
+    --color-fragrance-amber: #C0A517;
+    --color-fragrance-gourmand: #78544C;
+}
+
+
+body {
+    background-color: var(--main-background-color);
+    font-family: 'MapoFlowerIsland';
+}
+  
+  
+.container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.header {
+    width: 100vw;
+    display: flex;
+    justify-content: right;
+}
+
+
+.NavButton {
+    border: none;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    background-color: var(--color-signature-beige);
+}
