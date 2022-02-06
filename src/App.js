@@ -11,6 +11,7 @@ const App = () => {
             <Layout />
             <Routes>
                 <Route path='/' element={<MainPage />} exact={true} />
+                <Route path='/perfume_project' element={<MainPage />} exact={true} />
                 <Route path='/fragrance-component' element={<FragranceComponentPage />} />
             </Routes>
         </Fragment>
