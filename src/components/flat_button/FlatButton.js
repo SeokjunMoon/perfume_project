@@ -13,7 +13,7 @@ const FlatButton = ({ children, color, highlight, style, onClick, width, height 
     const basicButtonStyle = {
         border: 'none',
         borderRadius: '15px',
-        padding: '24px 46px',
+        padding: '8px 16px',
         fontSize: '30px',
         color: '#FFFFFF',
         lineHeight: '36px',

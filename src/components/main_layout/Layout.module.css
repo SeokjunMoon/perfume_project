@@ -58,8 +58,8 @@ body {
 
 .NavButton {
     border: none;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     text-align: center;
     background-color: var(--color-signature-beige);
     padding: 0;

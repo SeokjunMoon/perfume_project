@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 1500px;
+    margin: 0 50px;
 }
 
 .header {
@@ -14,7 +16,7 @@
 
 
 .title {
-    margin: 6px auto 120px auto;
+    margin: 6px auto 100px auto;
     font-weight: 400;
     font-size: 50px;
     color: #054A29;
@@ -30,8 +32,110 @@
 }
 
 
-.comments {
+.bottleDiv {
+    margin: auto auto 0 auto;
+}
+
+
+.bottle {
+    height: 300px;
+}
+
+
+.making {
+    display: flex;
+    /* margin-bottom: 100px; */
+}
+
+
+.buttons {
+    display: grid;
+    grid-template-rows: 50px 50px 50px 50px;
+    grid-row-gap: 56px;
+    width: 140px;
+    margin: 300px 80px 0 80px;
+}
+
+
+.makingNav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 74px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+}
+
+
+.NavItems {
+    box-sizing: border-box;
+    padding: 8px 0;
+    font-size: 26px;
+}
+
+.NavItems::after {
+    content: '';
+    display: block;
+    width: auto;
     position: relative;
+    bottom: -10px;
+    border-bottom: 4px solid #2C6E49;
+    transform: scaleX(0);
+    transition: transform 0.25s ease-in-out;
+}
+
+.NavItems:hover::after {
+    transform: scaleX(1);
+}
+
+@keyframes NavAnimator {
+    0% {
+        border-width: 0;
+    }
+    100% {
+        border-width: 100%;
+    }
+}
+
+
+.NoteDescription {
+    text-align: left;
+    border-radius: 20px;
+    border: 1.5px dashed #2C6E49;
+    background: #FFFFFF;
+    padding: 20px 20px;
+    width: 750px;
+}
+
+
+.searchArea {
+    border: none;
+    width: 230px;
+    height: 30px;
+    outline-style: none;
+}
+
+
+.comments {
+    position: absolute;
+    top: 230px;
+    right: 26px;
+}
+
+
+.filterButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--color-signature-darkgreen);
+    border-radius: 20px;
+    margin: 10px 0;
+    width: 100px;
+    height: 40px;
+    font-family: 'MapoFlowerIsland';
+    font-size: 16px;
+    background-color: transparent;
 }
 
 
@@ -40,8 +144,9 @@
     grid-template-rows: auto auto auto auto;
     grid-row-gap: 48px;
     text-align: left;
-    padding: 20px 20px;
-    max-width: 740px;
+    padding: 100px 100px;
+    width: 940px;
+    height: 600px;
     background-color: #FFFFFF;
     border-radius: 37px;
     border: 1.5px dashed #2C6E49;
@@ -61,10 +166,10 @@
     border-radius: 18px;
     text-align: center;
     color: #FFFFFF;
+    font-size: 26px;
 }
 
 .descriptions {
-    max-width: 570px;
     font-size: 22px;
     line-height: 160%;
 }

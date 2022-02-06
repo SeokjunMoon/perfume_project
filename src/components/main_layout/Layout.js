@@ -7,7 +7,8 @@ const Layout = ({ children, match, location, history, title }) => {
 
     const navButtonStyle = {
         color: '#2C6E49',
-        padding: '0'
+        padding: '0',
+        fontSize: '30px'
     };
 
 
