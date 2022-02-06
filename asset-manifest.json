@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/SeokjunMoon/perfume_project/static/css/main.dd229762.css",
+    "main.js": "/SeokjunMoon/perfume_project/static/js/main.569bc744.js",
+    "static/js/787.f1ac2b8e.chunk.js": "/SeokjunMoon/perfume_project/static/js/787.f1ac2b8e.chunk.js",
+    "static/media/MapoFlowerIsland.ttf": "/SeokjunMoon/perfume_project/static/media/MapoFlowerIsland.b103c2c1390318f47357.ttf",
+    "static/media/bottle_color.png": "/SeokjunMoon/perfume_project/static/media/bottle_color.d9b597121cff6feac4cc.png",
+    "index.html": "/SeokjunMoon/perfume_project/index.html",
+    "main.dd229762.css.map": "/SeokjunMoon/perfume_project/static/css/main.dd229762.css.map",
+    "main.569bc744.js.map": "/SeokjunMoon/perfume_project/static/js/main.569bc744.js.map",
+    "787.f1ac2b8e.chunk.js.map": "/SeokjunMoon/perfume_project/static/js/787.f1ac2b8e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dd229762.css",
+    "static/js/main.569bc744.js"
+  ]
+}
