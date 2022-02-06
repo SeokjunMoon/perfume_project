@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 54px;
+}
+
+
+.title {
+    margin: 6px auto 120px auto;
+    font-weight: 400;
+    font-size: 50px;
+    color: #054A29;
+    line-height: 60px;
+    padding: 0 16px 6px 16px;
+    border-bottom: 2px dashed #054A29;
+}
+
+
+.contents {
+    display: flex;
+    font-size: 26px;
+}
+
+
+.comments {
+    position: relative;
+}
+
+
+.PopupWindow {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    grid-row-gap: 48px;
+    text-align: left;
+    padding: 20px 20px;
+    max-width: 740px;
+    background-color: #FFFFFF;
+    border-radius: 37px;
+    border: 1.5px dashed #2C6E49;
+    margin: 8px;
+}
+
+
+.NoteInfo {
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-column-gap: 18px;
+}
+
+.NoteName {
+    height: fit-content;
+    padding: 8px 16px;
+    border-radius: 18px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.descriptions {
+    max-width: 570px;
+    font-size: 22px;
+    line-height: 160%;
+}

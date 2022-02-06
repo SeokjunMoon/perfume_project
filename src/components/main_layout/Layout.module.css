@@ -62,4 +62,5 @@ body {
     height: 60px;
     text-align: center;
     background-color: var(--color-signature-beige);
+    padding: 0;
 }

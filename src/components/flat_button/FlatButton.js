@@ -2,7 +2,13 @@ import React from 'react'
 import styles from './FlatButton.module.css'
 
 
-const FlatButton = ({ children, color, highlight, style, onClick }) => {
+const FlatButton = ({ children, color, highlight, style, onClick, width, height }) => {
+
+    const ObjectCopy = (a, b) => {
+        const temp = Object.assign({}, a);
+        return Object.assign(temp, b);
+    };
+
 
     const basicButtonStyle = {
         border: 'none',
@@ -15,13 +21,11 @@ const FlatButton = ({ children, color, highlight, style, onClick }) => {
         boxShadow: '6px 6px 0px ' + (highlight == null? '#74D3AE' : highlight)
     };
 
-
-    const ObjectCopy = (a, b) => {
-        const temp = Object.assign({}, a);
-        return Object.assign(temp, b);
-    };
+    if (width != null) basicButtonStyle.width = width;
+    if (height != null) basicButtonStyle.height = height;
 
 
+    const DURATION = 250;
     const applyButtonStyle = (style == null? basicButtonStyle : ObjectCopy(basicButtonStyle, style));
 
     return (
@@ -32,7 +36,7 @@ const FlatButton = ({ children, color, highlight, style, onClick }) => {
                 {backgroundColor: (highlight == null? '#74D3AE' : highlight),
                 boxShadow: '6px 6px 0px ' + (color == null? '#4C956C' : color)}
             ], {
-                duration: 300,
+                duration: DURATION,
                 fill: 'forwards'
             });
         }}
@@ -41,7 +45,7 @@ const FlatButton = ({ children, color, highlight, style, onClick }) => {
                 {backgroundColor: (color == null? '#4C956C' : color),
                 boxShadow: '6px 6px 0px ' + (highlight == null? '#74D3AE' : highlight)}
             ], {
-                duration: 300,
+                duration: DURATION,
                 fill: 'forwards'
             });
         }}>
