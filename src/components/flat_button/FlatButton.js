@@ -14,9 +14,7 @@ const FlatButton = ({ children, color, highlight, style, onClick, width, height 
         border: 'none',
         borderRadius: '15px',
         padding: '8px 16px',
-        fontSize: '30px',
         color: '#FFFFFF',
-        lineHeight: '36px',
         backgroundColor: (color == null? '#4C956C' : color),
         boxShadow: '6px 6px 0px ' + (highlight == null? '#74D3AE' : highlight)
     };

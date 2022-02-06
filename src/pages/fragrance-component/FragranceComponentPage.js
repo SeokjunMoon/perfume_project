@@ -13,15 +13,85 @@ const FragranceComponentPage = () => {
         color: '#2C6E49'
     };
 
+    
+    let currentNote = 'top';
+    const BottleProgress = {
+        TOP: 0,
+        MIDDLE: 0,
+        BASE: 0,
+        MAX: 50
+    };
+    
+    
+    const COLOR = {
+        TOP: 'rgba(253, 151, 129, 0.8)',
+        MIDDLE: 'rgba(246, 231, 203, 0.8)',
+        BASE: 'rgba(166, 196, 138, 0.8)'
+    };
+    Object.freeze(COLOR);
+    
+    
+    const onNavClickListener = (event) => {
+        const top = document.getElementById('top');
+        const middle = document.getElementById('middle');
+        const base = document.getElementById('base');
 
-    const onNavClickListener = (evetn) => {
+        top.style.borderBottom = '4px solid #FEFEE3';
+        middle.style.borderBottom = '4px solid #FEFEE3';
+        base.style.borderBottom = '4px solid #FEFEE3';
 
+        event.target.style.borderBottom = '4px solid #2C6E49';
+        currentNote = event.target.id;
     };
 
+    /* 
+    * 1ml 당 5px 
+    * 탑노트: 최대 15
+    * 미들노트: 최대 25
+    * 배이스노트: 최대 10
+    * 합해서 50
+    */
+    const AddToBottleListener = (event, type) => {
+        if (type === 0) {
+            BottleProgress.TOP = 0;
+            BottleProgress.MIDDLE = 0;
+            BottleProgress.BASE = 0;
 
-    let BottleProgress = 0;
-    const MAX_BOTTLE = 50;
+            const top_span = document.getElementById('top-span');
+            const middle_span = document.getElementById('middle-span');
+            const base_span = document.getElementById('base-span');
 
+            top_span.style.height = 0;
+            middle_span.style.height = 0;
+            base_span.style.height = 0;
+        }
+
+        else {
+            switch(currentNote) {
+                case 'top':
+                    if (BottleProgress.TOP + type <= 15) {
+                        const top_span = document.getElementById('top-span');
+                        top_span.style.height = (BottleProgress.TOP + type) * 6 + 'px';
+                        BottleProgress.TOP += type;
+                    }
+                    break;
+                case 'middle':
+                    if (BottleProgress.MIDDLE + type <= 25) {
+                        const middle_span = document.getElementById('middle-span');
+                        middle_span.style.height = (BottleProgress.MIDDLE + type) * 6 + 'px';
+                        BottleProgress.MIDDLE += type;
+                    }
+                    break;
+                case 'base':
+                    if (BottleProgress.BASE + type <= 10) {
+                        const base_span = document.getElementById('base-span');
+                        base_span.style.height = (BottleProgress.BASE + type) * 6 + 'px';
+                        BottleProgress.BASE += type;
+                    }
+                    break;
+            }
+        }
+    };
 
 
     return (
@@ -67,31 +137,39 @@ const FragranceComponentPage = () => {
 
                 <div className={styles.contents}>
                     
-                    <div className={styles.bottleDiv}>
-                        <img src={BottleImg} alt='bottle image' heigth='574' className={styles.bottle}/>
-                        <div style={{fontSize: '32px', margin: '16px auto 5px auto'}}>50ml / 0ml</div>
-                        <div style={{fontSize: '16px'}}>* 상기 용량은 향수 종류에 따라 달라질 수 있습니다.</div>
+                    <div className={styles.leftContents}>
+                        <div className={styles.bottleDiv}>
+                            <img src={BottleImg} alt='bottle image' className={styles.bottle}/>
+                            <div style={{fontSize: '32px', margin: '16px auto 5px auto'}}>50ml / 0ml</div>
+                            <div style={{fontSize: '16px'}}>* 상기 용량은 향수 종류에 따라 달라질 수 있습니다.</div>
+                            <div className={styles.contentspan}>
+                                <span className={styles.inBottle} id='top-span' style={{backgroundColor: COLOR.TOP}}></span>
+                                <span className={styles.inBottle} id='middle-span' style={{backgroundColor: COLOR.MIDDLE}}></span>
+                                <span className={styles.inBottle} id='base-span' style={{backgroundColor: COLOR.BASE}}></span>
+                            </div>
+                        </div>
+
+                        <nav className={styles.buttons}>
+                            <FlatButton color='#FFC9B9' highlight='#FFFFFF' style={{fontSize: '24px', width: '110px', lineHeight: '36px'}} onClick={(event) => AddToBottleListener(event, 5)}>+ 5ml</FlatButton>
+                            <FlatButton color='#FFC9B9' highlight='#FFFFFF' style={{fontSize: '24px', width: '110px', lineHeight: '36px'}} onClick={(event) => AddToBottleListener(event, 1)}>+ 1ml</FlatButton>
+                            <FlatButton color='#DD9787' highlight='#FFFFFF' style={{fontSize: '24px', width: '110px', lineHeight: '36px'}} onClick={(event) => AddToBottleListener(event, -5)}>- 5ml</FlatButton>
+                            <FlatButton color='#DD9787' highlight='#FFFFFF' style={{fontSize: '24px', width: '110px', lineHeight: '36px'}} onClick={(event) => AddToBottleListener(event, -1)}>- 1ml</FlatButton>
+                            <FlatButton color='#74D3AE' highlight='#FFFFFF' style={{fontSize: '24px', width: '110px', lineHeight: '36px'}} onClick={(event) => AddToBottleListener(event, 0)}>refresh</FlatButton>
+                        </nav>
                     </div>
-                    
 
                     <div className={styles.making}>
-                        <nav className={styles.buttons}>
-                            <FlatButton color='#FFC9B9' highlight='#FFFFFF' style={{fontSize: '24px', width: '140px'}}>+ 5ml</FlatButton>
-                            <FlatButton color='#FFC9B9' highlight='#FFFFFF' style={{fontSize: '24px', width: '140px'}}>+ 1ml</FlatButton>
-                            <FlatButton color='#DD9787' highlight='#FFFFFF' style={{fontSize: '24px', width: '140px'}}>- 5ml</FlatButton>
-                            <FlatButton color='#DD9787' highlight='#FFFFFF' style={{fontSize: '24px', width: '140px'}}>- 1ml</FlatButton>
-                            <FlatButton color='#74D3AE' highlight='#FFFFFF' style={{fontSize: '24px', width: '140px'}}>refresh</FlatButton>
-                        </nav>
+
                         <div>
                             <nav className={styles.makingNav}>
-                                <div className={styles.NavItems} id='top' onClick={(event) => onNavClickListener(event)}>Top note</div>
+                                <div className={styles.NavItems} id='top' onClick={(event) => onNavClickListener(event)} style={{borderBottom: '4px solid #2C6E49'}}>Top note</div>
                                 <div className={styles.NavItems} id='middle' onClick={(event) => onNavClickListener(event)}>Middle note</div>
                                 <div className={styles.NavItems} id='base' onClick={(event) => onNavClickListener(event)}>Base note</div>
                             </nav>
 
                             <div className={styles.NoteDescription}>
-                                <div className={styles.currentTitle} style={{fontSize: '26px'}}>탑노트란?</div>
-                                <div className={styles.currentDescription} style={{fontSize: '22px'}}>뿌린 뒤 10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.<br/>향 정류를 선택하여 나만의 향수를 만들어 보세요!</div>
+                                <div className={styles.currentTitle} style={{fontSize: '26px', paddingBottom: '10px', fontWeight: '600'}}>탑노트란?</div>
+                                <div className={styles.currentDescription} style={{fontSize: '18px'}}>뿌린 뒤 10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.<br/>향 정류를 선택하여 나만의 향수를 만들어 보세요!</div>
                             </div>
 
                             <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center'}}>
