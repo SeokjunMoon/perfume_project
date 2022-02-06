@@ -141,7 +141,7 @@ const FragranceComponentPage = () => {
                         <div className={styles.bottleDiv}>
                             <img src={BottleImg} alt='bottle image' className={styles.bottle}/>
                             <div style={{fontSize: '32px', margin: '16px auto 5px auto'}}>50ml / 0ml</div>
-                            <div style={{fontSize: '16px'}}>* 상기 용량은 향수 종류에 따라 달라질 수 있습니다.</div>
+                            <div style={{fontSize: '16px', height: '50px'}}>* 상기 용량은 향수 종류에 따라 달라질 수 있습니다.</div>
                             <div className={styles.contentspan}>
                                 <span className={styles.inBottle} id='top-span' style={{backgroundColor: COLOR.TOP}}></span>
                                 <span className={styles.inBottle} id='middle-span' style={{backgroundColor: COLOR.MIDDLE}}></span>
@@ -159,8 +159,6 @@ const FragranceComponentPage = () => {
                     </div>
 
                     <div className={styles.making}>
-
-                        <div>
                             <nav className={styles.makingNav}>
                                 <div className={styles.NavItems} id='top' onClick={(event) => onNavClickListener(event)} style={{borderBottom: '4px solid #2C6E49'}}>Top note</div>
                                 <div className={styles.NavItems} id='middle' onClick={(event) => onNavClickListener(event)}>Middle note</div>
@@ -180,8 +178,6 @@ const FragranceComponentPage = () => {
                                 </div>
                                 <button className={styles.filterButton}><span className="material-icons">expand_more</span>계열 &nbsp;</button>
                             </div>
-                        </div>
-                        
                     </div>
                 </div>
             </div>
