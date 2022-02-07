@@ -236,7 +236,7 @@
     }
     .comments {
         padding: 0 0 60px 0;
-        width: calc(100vw - 60px);
+        width: calc(100vw - 40px);
         max-width: 800px;
         box-sizing: content-box;
         top: 460px;
@@ -254,12 +254,12 @@
     .contentspan {
         position: absolute;
         top: 114px;
-        left: 70px;
-        width: 210px;
+        left: 56px;
+        width: 194px;
         height: 220px;
     }
     .inBottle {
-        width: 210px;
+        width: 194px;
     }
     .buttons {
         margin: 0 auto;
@@ -285,7 +285,7 @@
 @media screen and (max-width: 669px) {
     .comments {
         padding: 0 0 60px 0;
-        width: calc(100vw - 60px);
+        width: calc(100vw - 40px);
         max-width: 800px;
         box-sizing: content-box;
         top: 405px;
@@ -314,12 +314,12 @@
     .contentspan {
         position: absolute;
         top: 54px;
-        left: 89px;
-        width: 170px;
+        left: 74px;
+        width: 160px;
         height: 220px;
     }
     .inBottle {
-        width: 170px;
+        width: 160px;
     }
     .buttons {
         grid-template-columns: 1fr 1fr;

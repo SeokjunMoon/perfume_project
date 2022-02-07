@@ -130,6 +130,7 @@ const FragranceComponentPage = () => {
                     </div>
 
                     <div className={styles.comments} id='pw'>
+                        
                         <span className="material-icons" style={CloseButtonStyle} onClick={(event) => {
                             const popup = document.getElementById('pw');
                             popup.style.display = 'none';

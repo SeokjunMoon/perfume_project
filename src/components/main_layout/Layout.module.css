@@ -41,9 +41,10 @@ body {
     margin: 0;
     padding: 0;
     min-width: 340px;
-    
 }
-  
+body::-webkit-scrollbar{ 
+    display:none;
+}
   
 .container {
     margin: 0 0 0 auto;
