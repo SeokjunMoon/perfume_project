@@ -9,11 +9,13 @@ const App = () => {
     return (
         <Fragment>
             <Layout />
-            <Routes>
-                <Route path='/' element={<MainPage />} exact={true} />
-                <Route path='/perfume_project' element={<MainPage />} exact={true} />
-                <Route path='/fragrance-component' element={<FragranceComponentPage />} />
-            </Routes>
+            <div style={{margin: '0 20px'}}>
+                <Routes>
+                    <Route path='/' element={<MainPage />} exact={true} />
+                    <Route path='/perfume_project' element={<MainPage />} exact={true} />
+                    <Route path='/fragrance-component' element={<FragranceComponentPage />} />
+                </Routes>
+            </div>
         </Fragment>
     );
 }

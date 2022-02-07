@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 1500px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 0 50px;
+    width: 100%;
 }
 
 
@@ -29,11 +29,7 @@
 .contents {
     display: flex;
     font-size: 26px;
-}
-
-
-.leftContents {
-    display: flex;
+    position: relative;
 }
 
 
@@ -44,27 +40,27 @@
 
 
 .bottle {
-    width: 284px !important;
+    width: 284px;
 }
 
 
 .contentspan {
     position: absolute;
-    top: 140px !important;
-    left: 50px !important;
-    width: 254px !important;
-    height: 294px !important;
+    top: 140px;
+    left: 12px;
+    width: 254px;
+    height: 294px;
     background-color: argb(30 30 30 / 20%);
     display: flex;
     flex-direction: column;
     justify-content: end;
     align-items: center;
     z-index: -1;
+    overflow: hidden;
 }
 
 .inBottle {
-    /* position: absolute; */
-    width: 254px !important;
+    width: 254px;
     transition: height 0.3s ease-in-out;
 }
 
@@ -72,6 +68,7 @@
 .making {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 
@@ -79,7 +76,6 @@
     display: grid;
     grid-template-rows: 50px 50px 50px 50px;
     grid-row-gap: 56px;
-    width: 140px;
     margin: 300px 80px 110px 80px;
 }
 
@@ -91,11 +87,12 @@
     justify-content: center;
     align-items: center;
     font-size: 36px;
+    width: 100%;
 }
 
 
 .NavItems {
-    box-sizing: content-box;
+    box-sizing: border-box;
     padding: 8px 0;
     font-size: 26px;
     color: var(--color-signature-green);
@@ -134,25 +131,28 @@
     border: 1.5px dashed #2C6E49;
     background: #FFFFFF;
     padding: 20px 20px;
-    /* width: max-content; */
-    max-width: 750px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 
 .searchArea {
     border: none;
-    width: 230px;
+    width: auto;
     height: 30px;
     outline-style: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+    box-sizing: content-box;
 }
 
 
 .comments {
     position: absolute;
-    top: 230px;
-    right: 26px;
+    padding: 0 0 100px 0;
+    background-color: #FFFFFF;
+    border-radius: 37px;
+    border: 1.5px dashed #2C6E49;
 }
 
 
@@ -176,13 +176,11 @@
     grid-template-rows: auto auto auto auto;
     grid-row-gap: 48px;
     text-align: left;
-    padding: 100px 100px;
-    width: 940px;
-    height: 600px;
-    background-color: #FFFFFF;
-    border-radius: 37px;
-    border: 1.5px dashed #2C6E49;
+    padding: 100px 100px 0 100px;
     margin: 8px;
+}
+.PopupWindow::-webkit-scrollbar{ 
+    display:none;
 }
 
 
@@ -207,34 +205,129 @@
 }
 
 
+@media screen and (min-width: 1440px) {
+    .PopupWindow {
+        width: 850px;
+        height: 650px;
+    }
+    .comments {
+        left: 350px;
+    }
+}
 
+@media screen and (min-width: 1120px) and (max-width: 1439px) {
+    .PopupWindow {
+        width: calc(100vw - 600px);
+        height: 650px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .comments {
+        left: 350px;
+    }
+}
 
-@media screen and (max-width: 1399px) {
+@media screen and (max-width: 1119px) {
+    .container {
+        max-width: 800px;
+    }
     .contents {
         flex-direction: column;
     }
+    .comments {
+        padding: 0 0 60px 0;
+        width: calc(100vw - 60px);
+        max-width: 800px;
+        box-sizing: content-box;
+        top: 460px;
+        left: 0;
+    }
+    .PopupWindow {
+        height: 650px;
+        padding: 60px 60px 0 60px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .bottle {
+        width: 220px;
+    }
+    .contentspan {
+        position: absolute;
+        top: 114px;
+        left: 70px;
+        width: 210px;
+        height: 220px;
+    }
+    .inBottle {
+        width: 210px;
+    }
     .buttons {
-        margin: 50px auto 0 auto;
+        margin: 0 auto;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr;
         grid-column-gap: 16px;
         justify-content: center;
         font-size: 10px;
     }
-    .leftContents {
-        margin-bottom: 50px;
-        flex-direction: column;
-    }
     .making {
         justify-content: center;
         align-items: center;
-        width: max-content;
+    }
+    .NavItems {
+        font-size: 20px;
     }
     .NoteDescription {
-        width: calc(100vw - 200px);
+        width: 100%;
     }
 }
 
-@media screen and (min-width: 1750px) {
-    
+
+@media screen and (max-width: 669px) {
+    .comments {
+        padding: 0 0 60px 0;
+        width: calc(100vw - 60px);
+        max-width: 800px;
+        box-sizing: content-box;
+        top: 405px;
+        left: 0;
+    }
+    .PopupWindow {
+        height: 650px;
+        padding: 60px 60px 0 60px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .NoteInfo {
+        grid-template-columns: 1fr;
+        grid-template-rows: 38px 1fr;
+        grid-row-gap: 18px;
+    }
+    .NoteName {
+        font-size: 18px;
+    }
+    .descriptions {
+        font-size: 18px;
+    }
+    .bottle {
+        width: 180px;
+    }
+    .contentspan {
+        position: absolute;
+        top: 54px;
+        left: 89px;
+        width: 170px;
+        height: 220px;
+    }
+    .inBottle {
+        width: 170px;
+    }
+    .buttons {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-row-gap: 20px;
+        grid-column-gap: 20px;
+    }
+    .NavItems {
+        font-size: 20px;
+    }
 }
