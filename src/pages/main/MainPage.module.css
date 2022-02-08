@@ -24,8 +24,36 @@
 }
 
 
-@media screen and (max-width: 497px) {
+.description1 {
+    margin: 10px auto;
+    line-height: 160%;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.description2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.description3 {
+    margin: 10px auto;
+    line-height: 160%;
+    font-size: 30px;
+    color: #054A29;
+    margin-top: 70px;
+    font-weight: 500;
+}
+
+
+@media screen and (max-width: 500px) {
     .title {
         padding: 0 16px 16px 16px;
+    }
+    .description1, .description2, .description3 {
+        font-size: 26px;
     }
 }

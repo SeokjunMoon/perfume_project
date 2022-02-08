@@ -10,7 +10,8 @@ const FragranceComponentPage = () => {
         position: 'absolute',
         right: 0,
         margin: '36px 36px',
-        color: '#2C6E49'
+        color: '#2C6E49',
+        cursor: 'pointer'
     };
 
     
@@ -52,14 +53,16 @@ const FragranceComponentPage = () => {
     * 합해서 50
     */
     const AddToBottleListener = (event, type) => {
+
+        const top_span = document.getElementById('top-span');
+        const middle_span = document.getElementById('middle-span');
+        const base_span = document.getElementById('base-span');
+        const current = document.getElementById('current');
+
         if (type === 0) {
             BottleProgress.TOP = 0;
             BottleProgress.MIDDLE = 0;
             BottleProgress.BASE = 0;
-
-            const top_span = document.getElementById('top-span');
-            const middle_span = document.getElementById('middle-span');
-            const base_span = document.getElementById('base-span');
 
             top_span.style.height = 0;
             middle_span.style.height = 0;
@@ -69,46 +72,34 @@ const FragranceComponentPage = () => {
         else {
             const currentWindowWidth = window.innerWidth;
             let hp;
-            if (currentWindowWidth >= 1200) hp = 6;
-            else if (currentWindowWidth < 1200 && currentWindowWidth >=  670) hp = 4.5;
-            else hp = 3.5;
+            if (currentWindowWidth >= 1120) hp = 5.88;
+            else if (currentWindowWidth < 1120 && currentWindowWidth >=  670) hp = 4.4;
+            else hp = 3.6;
 
             switch(currentNote) {
                 case 'top':
                     if (BottleProgress.TOP + type <= 15) {
-                        const top_span = document.getElementById('top-span');
                         top_span.style.height = (BottleProgress.TOP + type) * hp + 'px';
                         BottleProgress.TOP += type;
                     }
                     break;
                 case 'middle':
                     if (BottleProgress.MIDDLE + type <= 25) {
-                        const middle_span = document.getElementById('middle-span');
                         middle_span.style.height = (BottleProgress.MIDDLE + type) * hp + 'px';
                         BottleProgress.MIDDLE += type;
                     }
                     break;
                 case 'base':
                     if (BottleProgress.BASE + type <= 10) {
-                        const base_span = document.getElementById('base-span');
                         base_span.style.height = (BottleProgress.BASE + type) * hp + 'px';
                         BottleProgress.BASE += type;
                     }
                     break;
             }
         }
+
+        current.innerHTML = BottleProgress.MAX + 'ml/' + (BottleProgress.TOP + BottleProgress.MIDDLE + BottleProgress.BASE) + 'ml';
     };
-
-
-    // React.useEffect(() => {
-    //     const buttonsWidth = document.getElementById('buttons').innerWidth;
-    //     const making = document.getElementById('making');
-    //     let PopupWindowWidth = buttonsWidth + making.innerWidth;
-
-    //     const popup = document.getElementById('pw');
-    //     popup.style.width = (PopupWindowWidth - 80) + 'px';
-    //     popup.style.height = (making.innerHeight + 50) + 'px';
-    // });
 
 
     return (
@@ -120,7 +111,7 @@ const FragranceComponentPage = () => {
                     
                     <div className={styles.bottleDiv}>
                         <img src={BottleImg} alt='bottle image' className={styles.bottle}/>
-                        <div style={{fontSize: '32px', margin: '16px auto 5px auto'}}>50ml / 0ml</div>
+                        <div id='current' style={{fontSize: '32px', margin: '16px auto 5px auto'}}>50ml/0ml</div>
                         <div style={{fontSize: '14px', height: '50px'}}>* 상기 용량은 향수 종류에 따라 달라질 수 있습니다.</div>
                         <div className={styles.contentspan}>
                             <span className={styles.inBottle} id='top-span' style={{backgroundColor: COLOR.TOP}}></span>
@@ -187,7 +178,7 @@ const FragranceComponentPage = () => {
 
                             <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center', width: '100%', boxSizing: 'content-box'}}>
                                 <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center', backgroundColor: '#FFFFFF', borderRadius: '18px', padding: '8px 8px', margin: '10px 10px 10px 0'}}>
-                                    <span class="material-icons">search</span>
+                                    <span className="material-icons">search</span>
                                     <input type='search' id='input-search' className={styles.searchArea} placeholder='찾고 싶은 향료를 검색하세요'/>
                                     <button style={{border: 'none', borderRadius: '10px', color: '#054A29', backgroundColor: '#FDFDFD', fontSize: '18px', padding: '6px 12px', boxShadow: '2px 2px 2px 0px #F5F5F5, 2px -2px 2px 0px #F5F5F5'}}>Enter</button>
                                 </div>
