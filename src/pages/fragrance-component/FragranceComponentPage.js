@@ -9,7 +9,7 @@ const FragranceComponentPage = () => {
     const CloseButtonStyle = {
         position: 'absolute',
         right: 0,
-        margin: '36px 36px',
+        margin: '24px 24px',
         color: '#2C6E49',
         cursor: 'pointer'
     };
@@ -33,13 +33,9 @@ const FragranceComponentPage = () => {
     
     
     const onNavClickListener = (event) => {
-        const top = document.getElementById('top');
-        const middle = document.getElementById('middle');
-        const base = document.getElementById('base');
-
-        top.style.borderBottom = '4px solid #FEFEE3';
-        middle.style.borderBottom = '4px solid #FEFEE3';
-        base.style.borderBottom = '4px solid #FEFEE3';
+        document.getElementById('top').style.borderBottom = '4px solid #FEFEE3';
+        document.getElementById('middle').style.borderBottom = '4px solid #FEFEE3';
+        document.getElementById('base').style.borderBottom = '4px solid #FEFEE3';
 
         event.target.style.borderBottom = '4px solid #2C6E49';
         currentNote = event.target.id;
@@ -78,19 +74,19 @@ const FragranceComponentPage = () => {
 
             switch(currentNote) {
                 case 'top':
-                    if (BottleProgress.TOP + type <= 15) {
+                    if (BottleProgress.TOP + type <= 15 && BottleProgress.TOP + type >= 0) {
                         top_span.style.height = (BottleProgress.TOP + type) * hp + 'px';
                         BottleProgress.TOP += type;
                     }
                     break;
                 case 'middle':
-                    if (BottleProgress.MIDDLE + type <= 25) {
+                    if (BottleProgress.MIDDLE + type <= 25 && BottleProgress.MIDDLE + type >= 0) {
                         middle_span.style.height = (BottleProgress.MIDDLE + type) * hp + 'px';
                         BottleProgress.MIDDLE += type;
                     }
                     break;
                 case 'base':
-                    if (BottleProgress.BASE + type <= 10) {
+                    if (BottleProgress.BASE + type <= 10 && BottleProgress.BASE + type >= 0) {
                         base_span.style.height = (BottleProgress.BASE + type) * hp + 'px';
                         BottleProgress.BASE += type;
                     }
@@ -128,8 +124,8 @@ const FragranceComponentPage = () => {
                         }}>close</span>
                         <div className={styles.PopupWindow}>
                             <div>
-                                <div style={{fontSize: '30px'}}>Fragrance Component</div>
-                                <div style={{fontSize: '22px'}}>향수는 top note, middle note, base note로 구성되어 있습니다.</div>
+                                <div className={styles.PopupWindowTitle}>Fragrance Component</div>
+                                <div className={styles.PopupWindowDescription}>향수는 top note, middle note, base note로 구성되어 있습니다.</div>
                             </div>
 
                             <div className={styles.NoteInfo}>
@@ -157,35 +153,41 @@ const FragranceComponentPage = () => {
                     </div>
 
                     <nav className={styles.buttons} id='buttons'>
-                        <FlatButton color='#FFC9B9' highlight='#FFFFFF' style={{fontSize: '20px', width: '110px', lineHeight: '28px'}} onClick={(event) => AddToBottleListener(event, 5)}>+ 5ml</FlatButton>
-                        <FlatButton color='#FFC9B9' highlight='#FFFFFF' style={{fontSize: '20px', width: '110px', lineHeight: '28px'}} onClick={(event) => AddToBottleListener(event, 1)}>+ 1ml</FlatButton>
-                        <FlatButton color='#DD9787' highlight='#FFFFFF' style={{fontSize: '20px', width: '110px', lineHeight: '28px'}} onClick={(event) => AddToBottleListener(event, -5)}>- 5ml</FlatButton>
-                        <FlatButton color='#DD9787' highlight='#FFFFFF' style={{fontSize: '20px', width: '110px', lineHeight: '28px'}} onClick={(event) => AddToBottleListener(event, -1)}>- 1ml</FlatButton>
-                        <FlatButton color='#74D3AE' highlight='#FFFFFF' style={{fontSize: '20px', width: '110px', lineHeight: '28px'}} onClick={(event) => AddToBottleListener(event, 0)}>refresh</FlatButton>
+                        <FlatButton color='#FFC9B9' highlight='#DD9787' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, 5)}>+ 5ml</FlatButton>
+                        <FlatButton color='#FFC9B9' highlight='#DD9787' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, 1)}>+ 1ml</FlatButton>
+                        <FlatButton color='#DD9787' highlight='#FFC9B9' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, -5)}>- 5ml</FlatButton>
+                        <FlatButton color='#DD9787' highlight='#FFC9B9' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, -1)}>- 1ml</FlatButton>
+                        <div className={styles.RefreshButton}><FlatButton color='#74D3AE' highlight='#4C956C' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, 0)}>refresh</FlatButton></div>
                     </nav>
 
                     <div className={styles.making} id='making'>
-                            <nav className={styles.makingNav}>
-                                <div className={styles.NavItems} id='top' onClick={(event) => onNavClickListener(event)} style={{borderBottom: '4px solid #2C6E49'}}>Top note</div>
-                                <div className={styles.NavItems} id='middle' onClick={(event) => onNavClickListener(event)}>Middle note</div>
-                                <div className={styles.NavItems} id='base' onClick={(event) => onNavClickListener(event)}>Base note</div>
-                            </nav>
+                        <nav className={styles.makingNav}>
+                            <div className={styles.NavItems} id='top' onClick={(event) => onNavClickListener(event)} style={{borderBottom: '4px solid #2C6E49'}}>Top note</div>
+                            <div className={styles.NavItems} id='middle' onClick={(event) => onNavClickListener(event)}>Middle note</div>
+                            <div className={styles.NavItems} id='base' onClick={(event) => onNavClickListener(event)}>Base note</div>
+                        </nav>
+                        
+                        <div className={styles.NoteDescription}>
+                            <div className={styles.currentTitle} style={{fontSize: '26px', paddingBottom: '10px', fontWeight: '600'}}>탑노트란?</div>
+                            <div className={styles.currentDescription} style={{fontSize: '18px'}}>뿌린 뒤 10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.<br/>향 정류를 선택하여 나만의 향수를 만들어 보세요!</div>
+                        </div>
 
-                            <div className={styles.NoteDescription}>
-                                <div className={styles.currentTitle} style={{fontSize: '26px', paddingBottom: '10px', fontWeight: '600'}}>탑노트란?</div>
-                                <div className={styles.currentDescription} style={{fontSize: '18px'}}>뿌린 뒤 10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.<br/>향 정류를 선택하여 나만의 향수를 만들어 보세요!</div>
+                        <div className={styles.filterBox}>
+                            <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center', backgroundColor: '#FFFFFF', borderRadius: '18px', padding: '8px 8px', margin: '10px 10px 10px 0'}}>
+                                <span className="material-icons">search</span>
+                                <input type='search' id='input-search' className={styles.searchArea} placeholder='찾고 싶은 향료를 검색하세요'/>
+                                <button style={{border: 'none', borderRadius: '10px', color: '#054A29', backgroundColor: '#FDFDFD', fontSize: '18px', padding: '6px 12px', boxShadow: '2px 2px 2px 0px #F5F5F5, 2px -2px 2px 0px #F5F5F5'}}>Enter</button>
                             </div>
+                            <button className={styles.filterButton}><span className="material-icons">expand_more</span>계열 &nbsp;</button>
+                        </div>
 
-                            <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center', width: '100%', boxSizing: 'content-box'}}>
-                                <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center', backgroundColor: '#FFFFFF', borderRadius: '18px', padding: '8px 8px', margin: '10px 10px 10px 0'}}>
-                                    <span className="material-icons">search</span>
-                                    <input type='search' id='input-search' className={styles.searchArea} placeholder='찾고 싶은 향료를 검색하세요'/>
-                                    <button style={{border: 'none', borderRadius: '10px', color: '#054A29', backgroundColor: '#FDFDFD', fontSize: '18px', padding: '6px 12px', boxShadow: '2px 2px 2px 0px #F5F5F5, 2px -2px 2px 0px #F5F5F5'}}>Enter</button>
-                                </div>
-                                <button className={styles.filterButton}><span className="material-icons">expand_more</span>계열 &nbsp;</button>
-                            </div>
+                        <div className={styles.FragranceComponenets}>
+
+                        </div>
                     </div>
                 </div>
+
+                <div className={styles.FinishButton}><FlatButton color='#4C956C' highlight='#2C6E49' style={{width: '120px', height: '56px', fontSize: '24px'}}>finish</FlatButton></div>
             </div>
         </div>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './FlatButton.module.css'
 
 
-const FlatButton = ({ children, color, highlight, style, onClick, width, height }) => {
+const FlatButton = ({ children, color, shadow, highlight, style, onClick, width, height }) => {
 
     const ObjectCopy = (a, b) => {
         const temp = Object.assign({}, a);
@@ -16,7 +16,7 @@ const FlatButton = ({ children, color, highlight, style, onClick, width, height 
         padding: '8px 16px',
         color: '#FFFFFF',
         backgroundColor: (color == null? '#4C956C' : color),
-        boxShadow: '6px 6px 0px ' + (highlight == null? '#74D3AE' : highlight)
+        boxShadow: '6px 6px 0px ' + (shadow == null? '#FFFFFF' : shadow)
     };
 
     if (width != null) basicButtonStyle.width = width;
@@ -28,11 +28,26 @@ const FlatButton = ({ children, color, highlight, style, onClick, width, height 
 
     return (
         <button className={styles.flat} style={applyButtonStyle}
-        onClick={onClick}
+        onMouseDown = { event => {
+            event.target.animate([
+                {boxShadow: '-6px -6px 0px ' + (highlight == null? '#4C956C' : highlight)}
+            ], {
+                duration: DURATION,
+                fill: 'forwards'
+            })
+        }}
+        onMouseUp = { event => {
+            event.target.animate([
+                {boxShadow: '6px 6px 0px ' + (shadow == null? '#FFFFFF' : shadow)}
+            ], {
+                duration: DURATION,
+                fill: 'forwards'
+            });
+            onClick();
+        }}
         onMouseOver={ event => {
             event.target.animate([
-                {backgroundColor: (highlight == null? '#74D3AE' : highlight),
-                boxShadow: '6px 6px 0px ' + (color == null? '#4C956C' : color)}
+                {boxShadow: '6px 6px 0px ' + (highlight == null? '#4C956C' : highlight)}
             ], {
                 duration: DURATION,
                 fill: 'forwards'
@@ -40,8 +55,7 @@ const FlatButton = ({ children, color, highlight, style, onClick, width, height 
         }}
         onMouseOut={ event => {
             event.target.animate([
-                {backgroundColor: (color == null? '#4C956C' : color),
-                boxShadow: '6px 6px 0px ' + (highlight == null? '#74D3AE' : highlight)}
+                {boxShadow: '6px 6px 0px ' + (shadow == null? '#FFFFFF' : shadow)}
             ], {
                 duration: DURATION,
                 fill: 'forwards'

@@ -10,7 +10,29 @@ const Layout = ({ children, match, location, history, title }) => {
     const navButtonStyle = {
         color: '#2C6E49',
         padding: '0',
-        fontSize: '30px'
+        fontSize: '30px',
+        padding: 'auto auto'
+    };
+
+
+    const onTopMenuCloseListener = () => {
+        if (window.innerWidth <= 669) {
+            document.getElementById('child-div').style.marginTop = '0px';
+        }
+        else {
+            document.getElementById('nav-button').style.right = '0';
+        }
+        document.getElementById('top-menu').style.transform = 'scaleX(0)';
+    };
+
+    const onTopMenuOpenListener = (event) => {
+        if (window.innerWidth <= 669) {
+            document.getElementById('child-div').style.marginTop = '150px';
+        }
+        else {
+            event.target.style.right = '-80px';
+        }
+        document.getElementById('top-menu').style.transform = 'scaleX(1)';
     };
 
 
@@ -23,26 +45,22 @@ const Layout = ({ children, match, location, history, title }) => {
             </Helmet>
 
             <div className={styles.header}>
-                <div style={{position: 'absolute', top: '0', left: '0', width: '80px', height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <Link to='/'><img src={home} style={{width: '24px', height: '24px', cursor: 'pointer'}}/></Link>
-                </div>
+                <Link to='/' className={styles.HomeButton}>
+                    <img src={home} style={{width: '24px', height: '24px', cursor: 'pointer'}}/>
+                </Link>
 
-                <div className={styles.TopMenu} id='top-menu' onMouseLeave={ event => {
-                    document.getElementById('top-menu').style.transform = 'scaleX(0)';
-                    document.getElementById('nav-button').style.width = '80px';
-                }}>
-                    <button className={styles.TopMenuButton}>perfume recipe</button>
-                    <button className={styles.TopMenuButton}>category</button>
-                    <button className={styles.TopMenuButton}>review</button>
-                    <Link to='/mypage'><button className={styles.TopMenuButton}>my page</button></Link>
+                <div className={styles.TopMenu} id='top-menu' onMouseLeave={ event => onTopMenuCloseListener() }>
+                    <button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>perfume recipe</button>
+                    <button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>category</button>
+                    <button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>review</button>
+                    <Link to='/mypage'><button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>my page</button></Link>
                 </div>
-                <button id='nav-button' className={styles.NavButton} onMouseEnter={ event => {
-                    event.target.style.width = '0';
-                    document.getElementById('top-menu').style.transform = 'scaleX(1)';
-                }}><span className="material-icons" style={navButtonStyle}>menu</span></button>
+                <button id='nav-button' className={styles.NavButton} onMouseEnter={ event => onTopMenuOpenListener(event) }><span className="material-icons" style={navButtonStyle}>menu</span></button>
             </div>
 
-            {children}
+            <div className={styles.child} id='child-div'>
+                {children}
+            </div>
         </div>
     );
 }

@@ -1,3 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+
 .container {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.title {
+    margin: 6px auto 120px auto;
+    font-weight: 600;
+    font-size: 50px;
+    color: #054A29;
+    padding: 0 16px 6px 16px;
+    border-bottom: 2px dashed #054A29;
+    position: absolute;
+    top: 76px;
+}
+
+.InputPlace {
+    border: 1px solid var(--color-signature-darkgreen);
+    border-radius: 18px;
+    outline-style: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-sizing: border-box;
+    width: 300px;
+    height: 40px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 12px 18px;
+    margin: 10px 0;
+}
+
+.BottomMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.BottomMenuButton {
+    color: rgb(0, 0, 0, 0.4);
+    font-size: 16px;
+    padding: 20px 10px;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.description {
+    font-size: 28px;
+    text-align: center;
+    color: var(--color-signature-green);
+    margin: 75px auto 20px auto;
+}
+
+.LoginNav {
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px 50px;
+    grid-column-gap: 24px;
+}
+
+.LoginOption {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
 }

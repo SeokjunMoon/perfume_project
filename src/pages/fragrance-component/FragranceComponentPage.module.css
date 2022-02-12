@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 80px auto 0 auto;
 }
 
 .header {
@@ -12,6 +12,7 @@
     flex-direction: column;
     text-align: center;
     width: 100%;
+    position: relative;
 }
 
 
@@ -20,7 +21,6 @@
     font-weight: 600;
     font-size: 50px;
     color: #054A29;
-    line-height: 60px;
     padding: 0 16px 6px 16px;
     border-bottom: 2px dashed #054A29;
 }
@@ -69,14 +69,15 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: auto;
 }
 
 
 .buttons {
     display: grid;
     grid-template-rows: 50px 50px 50px 50px;
-    grid-row-gap: 56px;
-    margin: 300px 80px 110px 80px;
+    grid-row-gap: 50px;
+    margin: 300px 80px 120px 80px;
 }
 
 
@@ -123,13 +124,24 @@
     background: #FFFFFF;
     padding: 20px 20px;
     width: 100%;
+    max-width: 800px;
     box-sizing: border-box;
+    margin-top: 6px;
+}
+
+
+.filterBox {
+    display: grid;
+    grid-template-columns: auto 100px;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
 }
 
 
 .searchArea {
     border: none;
-    width: auto;
     height: 30px;
     outline-style: none;
     -webkit-appearance: none;
@@ -144,6 +156,7 @@
     background-color: #FFFFFF;
     border-radius: 37px;
     border: 1.5px dashed #2C6E49;
+    z-index: 1;
 }
 
 
@@ -169,9 +182,19 @@
     text-align: left;
     padding: 100px 100px 0 100px;
     margin: 8px;
+    height: 670px;
 }
 .PopupWindow::-webkit-scrollbar{ 
     display:none;
+}
+
+
+.PopupWindowTitle {
+    font-size: 30px;
+    padding-bottom: 5px;
+}
+.PopupWindowDescription {
+    font-size: 22px;
 }
 
 
@@ -184,7 +207,7 @@
 .NoteName {
     height: fit-content;
     padding: 8px 16px;
-    border-radius: 18px;
+    border-radius: 10px;
     text-align: center;
     color: #FFFFFF;
     font-size: 26px;
@@ -195,26 +218,49 @@
     line-height: 160%;
 }
 
+.FinishButton {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    z-index: 0;
+}
+
+.FragranceComponents {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 500px;
+}
+
 
 @media screen and (min-width: 1440px) {
     .PopupWindow {
         width: 850px;
-        height: 650px;
     }
     .comments {
         left: 350px;
+    }
+    .making {
+        margin: 0 20px 0 0;
+    }
+    .contents {
+        margin-left: 20px;
     }
 }
 
 @media screen and (min-width: 1120px) and (max-width: 1439px) {
     .PopupWindow {
         width: calc(100vw - 600px);
-        height: 650px;
         overflow-x: hidden;
         overflow-y: auto;
     }
     .comments {
         left: 350px;
+    }
+    .making {
+        margin: 0 20px 0 0;
+    }
+    .contents {
+        margin-left: 20px;
     }
 }
 
@@ -227,17 +273,16 @@
     }
     .comments {
         padding: 0 0 60px 0;
-        width: calc(100vw - 40px);
+        width: 100vw;
         max-width: 800px;
         box-sizing: content-box;
         top: 460px;
         left: 0;
     }
     .PopupWindow {
-        height: 650px;
+        height: 100%;
         padding: 60px 60px 0 60px;
         overflow-x: hidden;
-        overflow-y: auto;
     }
     .bottle {
         width: 220px;
@@ -254,11 +299,16 @@
     }
     .buttons {
         margin: 0 auto;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr;
-        grid-column-gap: 16px;
+        grid-column-gap: 24px;
         justify-content: center;
         font-size: 10px;
+        position: relative;
+    }
+    .RefreshButton {
+        position: absolute;
+        top: -500px;
     }
     .making {
         justify-content: center;
@@ -268,36 +318,54 @@
         font-size: 24px;
     }
     .NoteDescription {
-        width: 100%;
+        width: calc(100vw - 40px);
+        margin-top: 6px;
+    }
+    .filterBox {
+        width: calc(100vw - 40px);
+    }
+    .FinishButton {
+        top: 148px;
+        right: 122px;
     }
 }
 
 
 @media screen and (max-width: 669px) {
+    .container {
+        margin-top: 0;
+    }
+    .title {
+        padding: 14px 0 6px 0;
+        margin-top: 0;
+        font-size: 24px;
+    }
     .comments {
-        padding: 0 0 60px 0;
-        width: calc(100vw - 40px);
-        max-width: 800px;
+        padding: 0 0 12px 0;
+        width: 100vw;
         box-sizing: content-box;
         top: 405px;
         left: 0;
     }
     .PopupWindow {
-        height: 650px;
-        padding: 60px 60px 0 60px;
+        height: 100%;
+        padding: 12px 12px 0 12px;
         overflow-x: hidden;
-        overflow-y: auto;
+    }
+    .PopupWindowTitle {
+        font-size: 26px;
+    }
+    .PopupWindowDescription {
+        font-size: 18px;
     }
     .NoteInfo {
-        grid-template-columns: 1fr;
-        grid-template-rows: 38px 1fr;
-        grid-row-gap: 18px;
+        grid-template-columns: 100px auto;
     }
     .NoteName {
-        font-size: 18px;
+        font-size: 16px;
     }
     .descriptions {
-        font-size: 18px;
+        font-size: 16px;
     }
     .bottle {
         width: 180px;
@@ -313,12 +381,23 @@
         width: 160px;
     }
     .buttons {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
         grid-row-gap: 20px;
         grid-column-gap: 20px;
     }
+    .RefreshButton {
+        position: absolute;
+        top: -500px;
+    }
     .NavItems {
         font-size: 20px;
+    }
+    .NoteDescription {
+        width: calc(100vw - 40px);
+        margin-top: 6px;
+    }
+    .filterBox {
+        width: calc(100vw - 40px);
     }
 }

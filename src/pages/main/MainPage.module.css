@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 80px 20px 0 20px;
 }
 
 .header {
@@ -18,7 +19,6 @@
     font-weight: 600;
     font-size: 50px;
     color: #054A29;
-    line-height: 60px;
     padding: 0 16px 6px 16px;
     border-bottom: 2px dashed #054A29;
 }
@@ -49,9 +49,14 @@
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 669px) {
+    .container {
+        margin-top: 0px;
+    }
     .title {
-        padding: 0 16px 16px 16px;
+        padding: 14px 0 6px 0;
+        margin-top: 0;
+        font-size: 24px;
     }
     .description1, .description2, .description3 {
         font-size: 26px;
