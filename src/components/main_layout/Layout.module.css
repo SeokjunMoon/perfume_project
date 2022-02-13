@@ -54,15 +54,27 @@ body::-webkit-scrollbar{
     flex-direction: column;
     align-items: center;
     width: 100%;
-    position: absolute;
-    top: 0;
+    /* position: absolute;
+    top: 0; */
+    transition: margin-bottom 0.3s ease-in-out;
+}
+
+
+.title {
+    font-size: 25px;
+    font-weight: 600;
+    color: #054A29;
+    border-bottom: 2px dashed #054A29;
+    width: fit-content;
+    margin: 8px auto;
+    padding: 2px 16px;
 }
 
 
 .header {
     display: flex;
     justify-content: right;
-    margin: 0 0 0 auto;
+    align-items: center;
     height: 80px !important;
     width: 100%;
 }
@@ -106,7 +118,7 @@ body::-webkit-scrollbar{
     align-items: center;
     margin: auto 20px;
     height: 100%;
-    transform: scaleX(0);
+    transform: scaleY(0);
     transition: transform 0.3s ease-out;
 }
 
@@ -127,19 +139,12 @@ body::-webkit-scrollbar{
 }
 
 
-.child {
-    transition: margin-top 0.3s ease-in-out;
-}
-
-
 @media screen and (max-width: 669px) {
     .header {
         flex-direction: column-reverse;
-        justify-content: center;
+        justify-content: center !important;
+        align-items: center;
         height: 40px !important;
-        position: absolute;
-        top: 0;
-        z-index: 10;
     }
     .HomeButton, .NavButton {
         width: 40px;
@@ -149,6 +154,16 @@ body::-webkit-scrollbar{
     .TopMenu {
         grid-template-columns: auto;
         grid-template-rows: 1fr 1fr 1fr 1fr;
-        grid-row-gap: 10px;
+        grid-row-gap: 0;
+    }
+    .TopMenuButton {
+        border: none;
+        width: 100vw;
+    }
+}
+
+@media screen and (min-width: 670px) {
+    .title {
+        display: none;
     }
 }

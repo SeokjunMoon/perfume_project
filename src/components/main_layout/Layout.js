@@ -5,7 +5,7 @@ import styles from './Layout.module.css'
 import home from '../../images/home.png'
 
 
-const Layout = ({ children, match, location, history, title }) => {
+const Layout = ({ title }) => {
 
     const navButtonStyle = {
         color: '#2C6E49',
@@ -15,35 +15,51 @@ const Layout = ({ children, match, location, history, title }) => {
     };
 
 
+    let open = false;
+
+
     const onTopMenuCloseListener = () => {
         if (window.innerWidth <= 669) {
-            document.getElementById('child-div').style.marginTop = '0px';
+            document.getElementById('header-container').style.marginBottom = '0';
         }
         else {
             document.getElementById('nav-button').style.right = '0';
         }
-        document.getElementById('top-menu').style.transform = 'scaleX(0)';
+        document.getElementById('top-menu').style.transform = 'scaleY(0)';
+        open = false;
     };
 
     const onTopMenuOpenListener = (event) => {
         if (window.innerWidth <= 669) {
-            document.getElementById('child-div').style.marginTop = '200px';
+            document.getElementById('header-container').style.marginBottom = '120px';
         }
         else {
             event.target.style.right = '-80px';
         }
-        document.getElementById('top-menu').style.transform = 'scaleX(1)';
+        document.getElementById('top-menu').style.transform = 'scaleY(1)';
+        open = true;
+    };
+
+
+    const onNavClickListener = (event) => {
+        if (open) {
+            onTopMenuCloseListener();
+        }
+        else {
+            onTopMenuOpenListener(event);
+        }
     };
 
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} id='header-container'>
             <Helmet>
                 <title>{(title == null? 'Perfume Fragrance' : title)}</title>
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
             </Helmet>
 
+            <div className={styles.title}>Blooming fragrance</div>
             <div className={styles.header}>
                 <Link to='/' className={styles.HomeButton}>
                     <img src={home} style={{width: '24px', height: '24px', cursor: 'pointer'}}/>
@@ -55,11 +71,7 @@ const Layout = ({ children, match, location, history, title }) => {
                     <button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>review</button>
                     <Link to='/mypage'><button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>my page</button></Link>
                 </div>
-                <button id='nav-button' className={styles.NavButton} onMouseEnter={ event => onTopMenuOpenListener(event) }><span className="material-icons" style={navButtonStyle}>menu</span></button>
-            </div>
-
-            <div className={styles.child} id='child-div'>
-                {children}
+                <button id='nav-button' className={styles.NavButton} onMouseEnter={ event => onTopMenuOpenListener(event) } onClick={ event => onNavClickListener(event)}><span className="material-icons" style={navButtonStyle}>menu</span></button>
             </div>
         </div>
     );

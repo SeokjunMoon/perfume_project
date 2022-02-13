@@ -40,6 +40,28 @@ const FragranceComponentPage = () => {
 
         event.target.style.borderBottom = '4px solid #2C6E49';
         currentNote = event.target.id;
+
+        const note_title = document.getElementById('current-note-title');
+        const note_description = document.getElementById('current-note-description');
+        const note_milli = document.getElementById('note-milli');
+
+        switch(currentNote) {
+            case 'top':
+                note_title.innerHTML = '탑노트';
+                note_description.innerHTML = '10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!';
+                note_milli.innerHTML = '(5~20ml)';
+                break;
+            case 'middle':
+                note_title.innerHTML = '미들노트';
+                note_description.innerHTML = '2~3시간 전후에 나타나는 향으로 향수 주제를 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!';
+                note_milli.innerHTML = '(50~80ml)';
+                break;
+            case 'base':
+                note_title.innerHTML = '베이스노트';
+                note_description.innerHTML = '1시간 전후에 나타나는 향으로 잔향을 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!';
+                note_milli.innerHTML = '(50~80ml)';
+                break;
+        }
     };
 
     /* 
@@ -169,8 +191,8 @@ const FragranceComponentPage = () => {
                         </nav>
                         
                         <div className={styles.NoteDescription}>
-                            <div className={styles.currentTitle} style={{fontSize: '26px', paddingBottom: '10px', fontWeight: '600'}}>탑노트란?</div>
-                            <div className={styles.currentDescription} style={{fontSize: '18px'}}>뿌린 뒤 10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.<br/>향 정류를 선택하여 나만의 향수를 만들어 보세요!</div>
+                            <div className={styles.currentTitle} style={{fontSize: '26px', paddingBottom: '10px', fontWeight: '600'}}><span id='current-note-title'>탑노트</span><span>란?</span><span id='note-milli' style={{fontSize: '12px', paddingLeft: '5px'}}>(5~20ml)</span></div>
+                            <div id='current-note-description' className={styles.currentDescription} style={{fontSize: '18px'}}>뿌린 뒤 10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.<br/>향료를 선택하여 나만의 향수를 만들어 보세요!</div>
                         </div>
 
                         <div className={styles.filterBox}>

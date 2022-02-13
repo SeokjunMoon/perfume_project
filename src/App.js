@@ -12,14 +12,14 @@ const App = () => {
     return (
         <Fragment>
             <Layout />
-                <Routes>
-                    <Route path='/' element={<MainPage />} exact={true} />
-                    <Route path='/perfume_project' element={<MainPage />} exact={true} />
-                    <Route path='/fragrance-component' element={<FragranceComponentPage />} />
-                    <Route path='/mypage' element={<MyPage />} />
-                    <Route path='/mypage/login' element={<LoginPage />} />
-                    <Route path='/mypage/registration' element={<Registration />} />
-                </Routes>
+            <Routes>
+                <Route path='/' element={<MainPage />} exact={true} />
+                <Route path='/perfume_project' element={<MainPage />} exact={true} />
+                <Route path='/fragrance-component' element={<FragranceComponentPage />} />
+                <Route path='/mypage' element={<MyPage />} />
+                <Route path='/mypage/login' element={<LoginPage />} />
+                <Route path='/mypage/registration' element={<Registration />} />
+            </Routes>
         </Fragment>
     );
 }
