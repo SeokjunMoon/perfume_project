@@ -15,7 +15,7 @@ const MainPage = () => {
                 <div className={styles.description3}>세상에 유일한 향기를 만들어보세요</div>
             </div>
 
-            <Link to='/fragrance-component'><FlatButton color='#4C956C' highlight='#74D3AE' style={{width: '320px', height: '80px', fontSize: '30px', marginBottom: '30px'}}>Make Perfume</FlatButton></Link>
+            <Link to='/fragrance-component'><FlatButton color='#4C956C' highlight='#74D3AE' style={{width: '320px', height: '80px', fontSize: '30px', marginBottom: '30px'}}>{'Make Perfume ->'}</FlatButton></Link>
         </div>
     )
 }

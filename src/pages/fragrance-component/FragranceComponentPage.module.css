@@ -64,6 +64,15 @@
     transition: height 0.3s ease-in-out;
 }
 
+.current {
+    font-size: 32px;
+    margin: 16px auto 5px auto;
+}
+.BottleDescription {
+    font-size: 14px;
+    height: 50px;
+}
+
 
 .making {
     display: flex;
@@ -78,6 +87,18 @@
     grid-template-rows: 50px 50px 50px 50px;
     grid-row-gap: 50px;
     margin: 300px 80px 120px 80px;
+}
+
+
+.RefreshButton {
+    width: 120px;
+    height: 56px;
+}
+
+
+.adding {
+    width: 120px;
+    height: 56px;
 }
 
 
@@ -142,6 +163,7 @@
 
 .searchArea {
     border: none;
+    width: 100px;
     height: 30px;
     outline-style: none;
     -webkit-appearance: none;
@@ -223,6 +245,8 @@
     bottom: 0;
     right: 20px;
     z-index: 0;
+    width: 120px;
+    height: 56px;
 }
 
 .FragranceComponents {
@@ -270,6 +294,7 @@
     }
     .contents {
         flex-direction: column;
+        align-items: flex-start;
     }
     .comments {
         padding: 0 0 60px 0;
@@ -325,8 +350,8 @@
         width: calc(100vw - 40px);
     }
     .FinishButton {
-        top: 148px;
-        right: 122px;
+        top: -500px;
+        right: 0px;
     }
 }
 
@@ -344,7 +369,7 @@
         padding: 0 0 12px 0;
         width: 100vw;
         box-sizing: content-box;
-        top: 405px;
+        top: 250px;
         left: 0;
     }
     .PopupWindow {
@@ -368,27 +393,62 @@
         font-size: 16px;
     }
     .bottle {
-        width: 180px;
+        width: 130px;
     }
     .contentspan {
         position: absolute;
-        top: 94px;
-        left: 74px;
-        width: 160px;
-        height: 180px;
+        top: 70px;
+        left: 6px;
+        width: 120px;
+        height: 130px;
     }
     .inBottle {
-        width: 160px;
+        width: 130px;
     }
     .buttons {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr;
-        grid-row-gap: 20px;
-        grid-column-gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-row-gap: 30px;
+        grid-column-gap: 170px;
+        top: -120px;
+        left: 0px;
+    }
+    .adding {
+        width: 80px;
+        height: 40px;
+    }
+    .adding button, .RefreshButton button, .FinishButton button {
+        font-size: 16px !important;
+    }
+    .adding:nth-child(4) {
+        order: 3;
+    }
+    .adding:nth-child(3) {
+        order: 4;
+    }
+    .adding:nth-child(2) {
+        order: 3;
+    }
+    .adding:nth-child(3) {
+        order: 2;
+    }
+    .current, .BottleDescription {
+        display: none;
     }
     .RefreshButton {
         position: absolute;
-        top: -500px;
+        top: -94px;
+        width: 80px;
+        height: 40px;
+    }
+    .FinishButton {
+        top: -94px;
+        width: 80px;
+        height: 40px;
+    }
+    .making {
+        position: relative;
+        top: -100px;
     }
     .NavItems {
         font-size: 20px;

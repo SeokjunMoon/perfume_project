@@ -27,7 +27,7 @@ const Layout = ({ children, match, location, history, title }) => {
 
     const onTopMenuOpenListener = (event) => {
         if (window.innerWidth <= 669) {
-            document.getElementById('child-div').style.marginTop = '150px';
+            document.getElementById('child-div').style.marginTop = '200px';
         }
         else {
             event.target.style.right = '-80px';
@@ -49,7 +49,7 @@ const Layout = ({ children, match, location, history, title }) => {
                     <img src={home} style={{width: '24px', height: '24px', cursor: 'pointer'}}/>
                 </Link>
 
-                <div className={styles.TopMenu} id='top-menu' onMouseLeave={ event => onTopMenuCloseListener() }>
+                <div className={styles.TopMenu} id='top-menu' onMouseLeave={ () => onTopMenuCloseListener() }>
                     <button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>perfume recipe</button>
                     <button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>category</button>
                     <button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>review</button>

@@ -11,7 +11,8 @@ const FragranceComponentPage = () => {
         right: 0,
         margin: '24px 24px',
         color: '#2C6E49',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        zIndex: 3
     };
 
     
@@ -70,7 +71,7 @@ const FragranceComponentPage = () => {
             let hp;
             if (currentWindowWidth >= 1120) hp = 5.88;
             else if (currentWindowWidth < 1120 && currentWindowWidth >=  670) hp = 4.4;
-            else hp = 3.6;
+            else hp = 2.6;
 
             switch(currentNote) {
                 case 'top':
@@ -107,8 +108,8 @@ const FragranceComponentPage = () => {
                     
                     <div className={styles.bottleDiv}>
                         <img src={BottleImg} alt='bottle image' className={styles.bottle}/>
-                        <div id='current' style={{fontSize: '32px', margin: '16px auto 5px auto'}}>50ml/0ml</div>
-                        <div style={{fontSize: '14px', height: '50px'}}>* 상기 용량은 향수 종류에 따라 달라질 수 있습니다.</div>
+                        <div id='current' className={styles.current}>50ml/0ml</div>
+                        <div className={styles.BottleDescription}>* 상기 용량은 향수 종류에 따라 달라질 수 있습니다.</div>
                         <div className={styles.contentspan}>
                             <span className={styles.inBottle} id='top-span' style={{backgroundColor: COLOR.TOP}}></span>
                             <span className={styles.inBottle} id='middle-span' style={{backgroundColor: COLOR.MIDDLE}}></span>
@@ -117,7 +118,6 @@ const FragranceComponentPage = () => {
                     </div>
 
                     <div className={styles.comments} id='pw'>
-                        
                         <span className="material-icons" style={CloseButtonStyle} onClick={(event) => {
                             const popup = document.getElementById('pw');
                             popup.style.display = 'none';
@@ -152,12 +152,13 @@ const FragranceComponentPage = () => {
                         </div>                        
                     </div>
 
-                    <nav className={styles.buttons} id='buttons'>
-                        <FlatButton color='#FFC9B9' highlight='#DD9787' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, 5)}>+ 5ml</FlatButton>
-                        <FlatButton color='#FFC9B9' highlight='#DD9787' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, 1)}>+ 1ml</FlatButton>
-                        <FlatButton color='#DD9787' highlight='#FFC9B9' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, -5)}>- 5ml</FlatButton>
-                        <FlatButton color='#DD9787' highlight='#FFC9B9' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, -1)}>- 1ml</FlatButton>
-                        <div className={styles.RefreshButton}><FlatButton color='#74D3AE' highlight='#4C956C' style={{fontSize: '20px', width: '120px', height: '56px'}} onClick={(event) => AddToBottleListener(event, 0)}>refresh</FlatButton></div>
+                    <nav className={styles.buttons}>
+                        <div className={styles.adding}><FlatButton color='#FFC9B9' highlight='#DD9787' width='100%' height='100%' style={{fontSize: '20px'}} onClick={(event) => AddToBottleListener(event, 5)}>+ 5ml</FlatButton></div>
+                        <div className={styles.adding}><FlatButton color='#FFC9B9' highlight='#DD9787' width='100%' height='100%' style={{fontSize: '20px'}} onClick={(event) => AddToBottleListener(event, 1)}>+ 1ml</FlatButton></div>
+                        <div className={styles.adding}><FlatButton color='#DD9787' highlight='#FFC9B9' width='100%' height='100%' style={{fontSize: '20px'}} onClick={(event) => AddToBottleListener(event, -5)}>- 5ml</FlatButton></div>
+                        <div className={styles.adding}><FlatButton color='#DD9787' highlight='#FFC9B9' width='100%' height='100%' style={{fontSize: '20px'}} onClick={(event) => AddToBottleListener(event, -1)}>- 1ml</FlatButton></div>
+                        <div className={styles.RefreshButton}><FlatButton color='#74D3AE' highlight='#4C956C' width='100%' height='100%' style={{fontSize: '20px'}} onClick={(event) => AddToBottleListener(event, 0)}>refresh</FlatButton></div>
+                        <div className={styles.FinishButton}><FlatButton color='#4C956C' highlight='#2C6E49' width='100%' height='100%' style={{fontSize: '24px'}}>finish</FlatButton></div>
                     </nav>
 
                     <div className={styles.making} id='making'>
@@ -186,8 +187,6 @@ const FragranceComponentPage = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className={styles.FinishButton}><FlatButton color='#4C956C' highlight='#2C6E49' style={{width: '120px', height: '56px', fontSize: '24px'}}>finish</FlatButton></div>
             </div>
         </div>
     )

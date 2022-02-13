@@ -139,6 +139,7 @@ body::-webkit-scrollbar{
         height: 40px !important;
         position: absolute;
         top: 0;
+        z-index: 10;
     }
     .HomeButton, .NavButton {
         width: 40px;
