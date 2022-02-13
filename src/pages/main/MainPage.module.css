@@ -48,6 +48,11 @@
     font-weight: 500;
 }
 
+.btn {
+    width: 328px;
+    height: 82px;
+}
+
 
 @media screen and (max-width: 669px) {
     .container {
@@ -57,6 +62,13 @@
         display: none;
     }
     .description1, .description2, .description3 {
-        font-size: 26px;
+        font-size: 22px;
+    }
+    .btn {
+        width: 278px;
+        height: 56px;
+    }
+    .btn button {
+        font-size: 20px !important;
     }
 }

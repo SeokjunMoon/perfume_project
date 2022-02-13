@@ -54,20 +54,17 @@ body::-webkit-scrollbar{
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* position: absolute;
-    top: 0; */
-    transition: margin-bottom 0.3s ease-in-out;
 }
 
 
 .title {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 600;
     color: #054A29;
     border-bottom: 2px dashed #054A29;
     width: fit-content;
     margin: 8px auto;
-    padding: 2px 16px;
+    padding: 10px 14px 2px 14px;
 }
 
 
@@ -138,6 +135,12 @@ body::-webkit-scrollbar{
     background-color: #FFFFFF;
 }
 
+.child {
+    width: 100%;
+    height: 100%;
+    transition: margin-top 0.3s ease-in-out;
+}
+
 
 @media screen and (max-width: 669px) {
     .header {
@@ -155,10 +158,12 @@ body::-webkit-scrollbar{
         grid-template-columns: auto;
         grid-template-rows: 1fr 1fr 1fr 1fr;
         grid-row-gap: 0;
+        margin-top: 100px;
     }
     .TopMenuButton {
         border: none;
         width: 100vw;
+        border-radius: 0;
     }
 }
 

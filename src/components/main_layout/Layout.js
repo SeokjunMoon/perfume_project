@@ -5,7 +5,7 @@ import styles from './Layout.module.css'
 import home from '../../images/home.png'
 
 
-const Layout = ({ title }) => {
+const Layout = ({ pageTitle, children, title }) => {
 
     const navButtonStyle = {
         color: '#2C6E49',
@@ -20,7 +20,7 @@ const Layout = ({ title }) => {
 
     const onTopMenuCloseListener = () => {
         if (window.innerWidth <= 669) {
-            document.getElementById('header-container').style.marginBottom = '0';
+            document.getElementById('child').style.marginTop = '0';
         }
         else {
             document.getElementById('nav-button').style.right = '0';
@@ -31,7 +31,7 @@ const Layout = ({ title }) => {
 
     const onTopMenuOpenListener = (event) => {
         if (window.innerWidth <= 669) {
-            document.getElementById('header-container').style.marginBottom = '120px';
+            document.getElementById('child').style.marginTop = '160px';
         }
         else {
             event.target.style.right = '-80px';
@@ -54,12 +54,16 @@ const Layout = ({ title }) => {
     return (
         <div className={styles.container} id='header-container'>
             <Helmet>
-                <title>{(title == null? 'Perfume Fragrance' : title)}</title>
+                <title>{(pageTitle == null? 'Perfume Fragrance' : pageTitle)}</title>
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
             </Helmet>
 
-            <div className={styles.title}>Blooming fragrance</div>
+            {
+                title != null && (
+                    <div className={styles.title} id='header-title'>{title}</div>
+                )
+            }
             <div className={styles.header}>
                 <Link to='/' className={styles.HomeButton}>
                     <img src={home} style={{width: '24px', height: '24px', cursor: 'pointer'}}/>
@@ -72,6 +76,10 @@ const Layout = ({ title }) => {
                     <Link to='/mypage'><button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>my page</button></Link>
                 </div>
                 <button id='nav-button' className={styles.NavButton} onMouseEnter={ event => onTopMenuOpenListener(event) } onClick={ event => onNavClickListener(event)}><span className="material-icons" style={navButtonStyle}>menu</span></button>
+            </div>
+
+            <div className={styles.child} id='child'>
+                {children}
             </div>
         </div>
     );
