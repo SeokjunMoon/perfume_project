@@ -1,0 +1,11 @@
+.container {
+    border: none;
+    background-color: transparent;
+    font-family: 'MapoFlowerIsland';
+    font-size: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 10px 0;
+    cursor: pointer;
+}

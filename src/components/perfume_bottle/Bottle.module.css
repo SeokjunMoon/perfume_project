@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    margin: 0 0 0 0;
+    padding: 40px 40px;
+    cursor: pointer;
+}
+
+.bottle {
+    width: 120px;
+    margin-right: 30px;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+}
+
+.note_info {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    width: 100%;
+    margin: 8px 0;
+}
+
+.note_title {
+    width: auto;
+    font-size: 18px;
+}
+
+.note_list {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.note {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 18px;
+}

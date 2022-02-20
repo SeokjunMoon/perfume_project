@@ -6,6 +6,9 @@ import FlatButton from '../../components/flat_button/FlatButton'
 
 const MyInfo = () => {
 
+    /*
+    * 로그인한 유저 정보를 저장하는 객체입니다
+    */
     const USER_INFORMATION = {
         NAME: '홍길동',
         RESIDENT_REGISTRATION_NUMBER: '010101-3*****',

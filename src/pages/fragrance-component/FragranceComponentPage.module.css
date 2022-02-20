@@ -488,6 +488,6 @@
         width: calc(100vw - 40px);
     }
     .FragranceComponents {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }

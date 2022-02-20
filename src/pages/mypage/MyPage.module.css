@@ -7,26 +7,21 @@
     max-width: 600px;
 }
 
-
-.profile {
-    width: 150px;
-    height: 150px;
-    border-radius: 100%;
-    isolation: isolate;
-    background-color: #C4C4C4;
-    margin-bottom: 12px;
-}
-
 .myname {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 55px;
+}
+.user_name {
+    text-align: center;
+    margin-bottom: 80px;
 }
 
 .gotoLogin {
     color: #000000;
     border: none;
     text-decoration: none;
+    margin-bottom: 80px;
 }
 
 .fragrances {
@@ -36,6 +31,19 @@
     align-items: center;
     width: 100%;
     margin-bottom: 40px;
+}
+
+.bookmark_fragrances {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.more {
+    border: none;
+    background-color: transparent;
+    color: #054A29;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .perfumes {

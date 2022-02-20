@@ -1,6 +1,8 @@
 import React from "react"
 import styles from './recipe.module.css'
 import Layout from '../../components/main_layout/Layout'
+import ToggleButton from '../../components/brand_perfume_toggle/Toggle'
+import FragranceBlock from "../../components/FragranceBlock/FragranceBlock"
 
 
 const recipe = () => {
@@ -38,13 +40,62 @@ const recipe = () => {
                     </div>
 
                     {
-                        ProductsRecipes.map( e => {
+                        ProductsRecipes.map( (e, index) => {
+                            const note = {
+                                top: e[3].split(', '),
+                                middle: e[4].split(', '),
+                                base: e[5].split(', ')
+                            };
+
                             return (
-                                <div className={styles.ProductBlock}>
-                                    <span>{e[1] + ' - ' + e[2]}</span>
-                                    {
-                                        
-                                    }
+                                <div key={e[2]}>
+                                    <ToggleButton title={e[1] + ' - ' + e[2]} id={e[2]} onClick={ (event, toggled, id) => {
+                                        const note_grid = document.getElementById('note-grid-' + e[2]);
+                                        if (toggled) {
+                                            note_grid.style.height = '0';
+                                        }
+                                        else {
+                                            note_grid.style.height = '100%';
+                                        }
+                                    }}/>
+                                    <div className={styles.note_grid} id={'note-grid-' + e[2]}>
+                                        <div style={{marginTop: '30px'}}>
+                                            <span>탑 노트</span>
+                                            <div className={styles.note_list}>
+                                                {
+                                                    note.top.map( e => {
+                                                        return (
+                                                            <FragranceBlock title={e} id={e} onClick={ (event, id, clicked) => {}} style={{margin: '0 10px'}}/>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{marginTop: '30px'}}>
+                                            <span>미들 노트</span>
+                                            <div className={styles.note_list}>
+                                                {
+                                                    note.middle.map( e => {
+                                                        return (
+                                                            <FragranceBlock title={e} id={e} onClick={ (event, id, clicked) => {}} style={{margin: '0 10px'}}/>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style={{marginTop: '30px'}}>
+                                            <span>베이스 노트</span>
+                                            <div className={styles.note_list}>
+                                                {
+                                                    note.base.map( e => {
+                                                        return (
+                                                            <FragranceBlock title={e} id={e} onClick={ (event, id, clicked) => {}} style={{margin: '0 10px'}}/>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             )
                         })

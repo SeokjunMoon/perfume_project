@@ -17,7 +17,7 @@
     background-color: #FFFFFF;
     border-radius: 18px;
     padding: 8px 8px;
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     width: calc(100% - 20px);
     max-width: 760px;
 }
@@ -45,5 +45,32 @@
 }
 
 .ProductBlock {
-    
+    margin: 0 0 30px 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    font-family: 'MapoFlowerIsland';
+    cursor: pointer;
+}
+
+.perfume_name {
+    font-size: 24px;
+}
+
+.note_grid {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    font-size: 18px;
+    height: 0;
+    overflow: hidden;
+}
+
+.note_list {
+    display: flex;
+    overflow: auto;
+    justify-content: flex-start;
+    align-items: center;
 }

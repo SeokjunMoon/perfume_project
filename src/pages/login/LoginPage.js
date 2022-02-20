@@ -15,9 +15,14 @@ const LoginPage = () => {
         <Layout>
             <div className={styles.container}>
                 <div className={styles.title}>Blooming fragrance</div>
-                <input type='text' placeholder='ID' className={styles.InputPlace} />
-                <input type='password' placeholder='PW' className={styles.InputPlace} minLength='8' maxLength='15'/>
-                <FlatButton color='#4C956C' highlight='#2C6E49' style={{width: '300px', height: '56px', fontSize: '24px', marginTop: '16px'}}>login</FlatButton>
+                <input type='text' placeholder='ID' className={styles.InputPlace} id='login-input-id'/>
+                <input type='password' placeholder='PW' className={styles.InputPlace} minLength='8' maxLength='15' id='login-input-pw'/>
+                <FlatButton color='#4C956C' highlight='#2C6E49' style={{width: '300px', height: '56px', fontSize: '24px', marginTop: '16px'}} onClick={ event => {
+                    const input_id = document.getElementById('login-input-id');
+                    const input_pw = document.getElementById('login-input-pw');
+
+                    
+                }}>login</FlatButton>
                 <div className={styles.BottomMenu}>
                     <Link to='/mypage/registration' className={styles.BottomMenuButton}>회원가입</Link>
                     <Link to='/mypage/find-account' className={styles.BottomMenuButton}>아이디/비밀번호 찾기</Link>
