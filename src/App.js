@@ -4,7 +4,10 @@ import MainPage from './pages/main/MainPage'
 import FragranceComponentPage from './pages/fragrance-component/FragranceComponentPage'
 import LoginPage from './pages/login/LoginPage'
 import Registration from './pages/login/registration'
+import FindPage from './pages/login/find'
 import MyPage from './pages/mypage/MyPage'
+import MyInfo from './pages/mypage/myinfo'
+import PerfumeRecipe from './pages/perfume-recipe/recipe'
 
 
 const App = () => {
@@ -17,6 +20,9 @@ const App = () => {
                 <Route path='/mypage' element={<MyPage />} />
                 <Route path='/mypage/login' element={<LoginPage />} />
                 <Route path='/mypage/registration' element={<Registration />} />
+                <Route path='/mypage/find-account' element={<FindPage />} />
+                <Route path='/mypage/information' element={<MyInfo />} />
+                <Route path='/perfume-recipe' element={<PerfumeRecipe />} />
             </Routes>
         </Fragment>
     );

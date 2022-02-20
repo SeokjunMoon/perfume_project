@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
+    margin: 80px auto 0 auto;
+    max-width: 600px;
 }
 
 
@@ -19,10 +20,29 @@
 .myname {
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 55px;
 }
 
 .gotoLogin {
     color: #000000;
     border: none;
     text-decoration: none;
+}
+
+.fragrances {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.perfumes {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
 }

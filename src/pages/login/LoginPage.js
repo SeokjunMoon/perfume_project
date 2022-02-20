@@ -20,15 +20,15 @@ const LoginPage = () => {
                 <FlatButton color='#4C956C' highlight='#2C6E49' style={{width: '300px', height: '56px', fontSize: '24px', marginTop: '16px'}}>login</FlatButton>
                 <div className={styles.BottomMenu}>
                     <Link to='/mypage/registration' className={styles.BottomMenuButton}>회원가입</Link>
-                    <div className={styles.BottomMenuButton}>아이디/비밀번호 찾기</div>
+                    <Link to='/mypage/find-account' className={styles.BottomMenuButton}>아이디/비밀번호 찾기</Link>
                 </div>
                 <div className={styles.description}>간편 로그인</div>
                 <nav className={styles.LoginNav}>
-                    <div><img src={Kakao} className={styles.LoginOption} /></div>
-                    <img src={Naver} className={styles.LoginOption} />
-                    <img src={Facebook} className={styles.LoginOption} />
-                    <img src={Google} className={styles.LoginOption} />
-                    <img src={Apple} className={styles.LoginOption} />
+                    <Link to=''><img src={Kakao} className={styles.LoginOption} /></Link>
+                    <Link to=''><img src={Naver} className={styles.LoginOption} /></Link>
+                    <Link to=''><img src={Facebook} className={styles.LoginOption} /></Link>
+                    <Link to=''><img src={Google} className={styles.LoginOption} /></Link>
+                    <Link to=''><img src={Apple} className={styles.LoginOption} /></Link>
                 </nav>
             </div>
         </Layout>

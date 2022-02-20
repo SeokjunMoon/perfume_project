@@ -15,7 +15,16 @@
     font-size: 50px;
     color: #054A29;
     padding: 0 16px 6px 16px;
-    border-bottom: 2px dashed #054A29;
+}
+.title::after {
+    display: block;
+    content: '';
+    width: calc(100% + 34px);
+    height: 3px;
+    position: relative;
+    top: 0;
+    left: -17px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23054A29FF' stroke-width='10' stroke-dasharray='3%2c6%2c9%2c17' stroke-dashoffset='9' stroke-linecap='butt'/%3e%3c/svg%3e");
 }
 
 .InputPlace {

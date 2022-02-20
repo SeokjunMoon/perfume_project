@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+
+.title {
+    font-size: 30px;
+    text-align: center;
+    color: var(--color-signature-green);
+    margin-bottom: 100px;
+}
+
+.checking {
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.confirm {
+    width: 260px;
+    height: 48px;
+    margin-top: 40px;
+}
+.confirm button {
+    font-size: 18px;
+}
+
+.contents {
+    display: none;
+    grid-template-columns: 140px auto;
+    grid-column-gap: 35px;
+    grid-row-gap: 40px;
+    align-items: flex-start;
+    width: calc(100vw - 40px);
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.text_title, .text_info {
+    font-size: 23px;
+    text-align: right;
+    color: #000000;
+}
+
+.text_title {
+    text-align: right;
+}
+
+.text_info {
+    text-align: left;
+}
+
+.InputPlace {
+    border: 1px solid var(--color-signature-darkgreen);
+    border-radius: 18px;
+    outline-style: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 12px 18px;
+}
+
+.description {
+    color: rgba(0, 0, 0, 0.4);
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+    padding: 4px 0 0 18px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.PostNumberButton {
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 13px;
+    color: #054A29;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 120px;
+}
+
+.AgencyButton {
+    background: #FFFFFF;
+    border: 1px solid #054A29;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    height: 40px;
+}
+
+.phone_number {
+    display: grid;
+    grid-template-columns: 87px auto 4px auto 4px auto;
+    grid-column-gap: 15px;
+}
