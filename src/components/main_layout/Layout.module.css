@@ -216,10 +216,6 @@ body::-webkit-scrollbar{
     white-space: pre-wrap;
 }
 .category_elements {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 30px; */
     display: flex;
     flex-flow: row wrap;
     margin-bottom: 80px;

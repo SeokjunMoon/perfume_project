@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from './recipe.module.css'
 import Layout from '../../components/main_layout/Layout'
 import ToggleButton from '../../components/brand_perfume_toggle/Toggle'
 import FragranceBlock from "../../components/FragranceBlock/FragranceBlock"
+import $ from 'jquery'
 
 
-const recipe = () => {
+const Recipe = () => {
 
     const ProductsRecipes = [
         [1,"조말론","블랙베리앤베어코롱","블랙베리","월계수","시더우드"  ],
@@ -19,13 +20,28 @@ const recipe = () => {
         [9,"딥디크","오 드 퍼퓸 오르페옹","주니퍼베리","자스민","시더우드, 통카빈"  ]
     ];
 
-    const Brands = [];
-
 
     const IconStyle = {
         margin: '4px 4px'
     };
 
+    const [ allData, setAllData ] = useState(ProductsRecipes);
+    const [ filteredData, setFilteredData ] = useState(allData);
+
+    const handleSearch = (event) => {
+        let value = event.target.value.trim().toLowerCase();
+
+        if (value == '') {
+            setFilteredData(allData);
+        }
+        else {
+            let result = [];
+            result = allData.filter( (data) => {
+                return (data[1].trim().toLowerCase().search(value) != -1 || data[2].trim().toLowerCase().search(value) != -1 || data[3].trim().toLowerCase().search(value) != -1);
+            });
+            setFilteredData(result);
+        }
+    }
 
     return (
         <Layout>
@@ -35,12 +51,12 @@ const recipe = () => {
 
                     <div className={styles.search}>
                         <span className="material-icons" style={IconStyle}>search</span>
-                        <input type='search' id='input-search' className={styles.searchArea} placeholder='찾고 싶은 향수를 검색하세요'/>
+                        <input type='search' id='PerfumeSearcher' className={styles.searchArea} placeholder='찾고 싶은 향수를 검색하세요' onChange={(event) => handleSearch(event)}/>
                         <button className={styles.enter}>Enter</button>
                     </div>
 
                     {
-                        ProductsRecipes.map( (e, index) => {
+                        filteredData.map( (e, index) => {
                             const note = {
                                 top: e[3].split(', '),
                                 middle: e[4].split(', '),
@@ -48,7 +64,7 @@ const recipe = () => {
                             };
 
                             return (
-                                <div key={e[2]}>
+                                <div key={index} id={e[1] + ' - ' + e[2]}>
                                     <ToggleButton title={e[1] + ' - ' + e[2]} id={e[2]} onClick={ (event, toggled, id) => {
                                         const note_grid = document.getElementById('note-grid-' + e[2]);
                                         if (toggled) {
@@ -106,4 +122,4 @@ const recipe = () => {
     )
 }
 
-export default recipe
+export default Recipe
