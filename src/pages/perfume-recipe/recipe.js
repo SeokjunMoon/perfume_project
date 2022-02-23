@@ -3,7 +3,6 @@ import styles from './recipe.module.css'
 import Layout from '../../components/main_layout/Layout'
 import ToggleButton from '../../components/brand_perfume_toggle/Toggle'
 import FragranceBlock from "../../components/FragranceBlock/FragranceBlock"
-import $ from 'jquery'
 
 
 const Recipe = () => {
@@ -70,7 +69,7 @@ const Recipe = () => {
 
                             return (
                                 <div key={index} id={e[1] + ' - ' + e[2]}>
-                                    <ToggleButton title={e[1] + ' - ' + e[2]} id={e[2]} onClick={ (event, toggled, id) => {
+                                    <ToggleButton title={e[1] + ' - ' + e[2]} id={e[2]} note={note} onClick={ (event, toggled, id) => {
                                         const note_grid = document.getElementById('note-grid-' + e[2]);
                                         if (toggled) {
                                             note_grid.style.height = '0';
@@ -84,9 +83,9 @@ const Recipe = () => {
                                             <span>탑 노트</span>
                                             <div className={styles.note_list}>
                                                 {
-                                                    note.top.map( e => {
+                                                    note.top.map( (e, e_index) => {
                                                         return (
-                                                            <FragranceBlock title={e} id={e} onClick={ (event, id, clicked) => {}} style={{margin: '0 10px'}}/>
+                                                            <div key={index + '/' + e_index}><FragranceBlock title={e} id={e} onClick={ (event, id, clicked) => {}} style={{margin: '0 10px'}}/></div>
                                                         )
                                                     })
                                                 }
@@ -96,9 +95,9 @@ const Recipe = () => {
                                             <span>미들 노트</span>
                                             <div className={styles.note_list}>
                                                 {
-                                                    note.middle.map( e => {
+                                                    note.middle.map( (e, e_index) => {
                                                         return (
-                                                            <FragranceBlock title={e} id={e} onClick={ (event, id, clicked) => {}} style={{margin: '0 10px'}}/>
+                                                            <div key={index + '/' + e_index}><FragranceBlock title={e} id={e} onClick={ (event, id, clicked) => {}} style={{margin: '0 10px'}}/></div>
                                                         )
                                                     })
                                                 }
@@ -108,9 +107,9 @@ const Recipe = () => {
                                             <span>베이스 노트</span>
                                             <div className={styles.note_list}>
                                                 {
-                                                    note.base.map( e => {
+                                                    note.base.map( (e, e_index) => {
                                                         return (
-                                                            <FragranceBlock title={e} id={e} onClick={ (event, id, clicked) => {}} style={{margin: '0 10px'}}/>
+                                                            <div key={index + '/' + e_index}><FragranceBlock title={e} id={e} onClick={ (event, id, clicked) => {}} style={{margin: '0 10px'}}/></div>
                                                         )
                                                     })
                                                 }

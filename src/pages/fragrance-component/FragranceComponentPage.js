@@ -5,9 +5,80 @@ import FlatButton from '../../components/flat_button/FlatButton'
 import Layout from '../../components/main_layout/Layout'
 import FragranceBlock from '../../components/FragranceBlock/FragranceBlock'
 import FinishBottleImg from '../../images/bottle_color.png'
+import { useLocation } from 'react-router-dom'
 
 
 const FragranceComponentPage = () => {
+
+    const location = useLocation();
+    const { type } = location.state;
+    const { name } = location.state;
+    const { note_info } = location.state;
+
+    const init = {
+        fragrance: {
+            top: '',
+            middle: '',
+            base: ''
+        },
+        progress: {
+            top: 0,
+            middle: 0,
+            base: 0
+        }
+    };
+
+    if (type == 'brand') {
+        note_info.top.forEach( (e, index) => {
+            let ttt = Math.floor(15 / note_info.top.length);
+            init.fragrance.top += '' + (e) + '.' + ttt + (index != note_info.top.length? '/' : '');
+            init.progress.top += ttt;
+        });
+        note_info.middle.forEach( (e, index) => {
+            let ttt = Math.floor(25 / note_info.middle.length);
+            init.fragrance.middle += '' + (e) + '.' + ttt + (index != note_info.middle.length? '/' : '');
+            init.progress.middle += ttt;
+        });
+        note_info.base.forEach( (e, index) => {
+            let ttt = Math.floor(10 / note_info.base.length);
+            init.fragrance.base += '' + (e) + '.' + ttt + (index != note_info.base.length? '/' : '');
+            init.progress.base += ttt;
+        });
+    }
+
+
+    const [ currentNote, setCurrentNote ] = useState('top');
+    const [ topFragrances, setTopFragrance ] = useState(init.fragrance.top);
+    const [ middleFragrances, setMiddleFragrance ] = useState(init.fragrance.middle);
+    const [ baseFragrances, setBaseFragrance ] = useState(init.fragrance.base);
+    const [ progressTop, setTopProgress ] = useState(init.progress.top);
+    const [ progressMiddle, setMiddleProgress ] = useState(init.progress.middle);
+    const [ progressBase, setBaseProgress ] = useState(init.progress.base);
+    
+    const [ clickedFragrance, setClickedFragrance ] = useState('');
+    const [ clickedOffset, setClickedOffset ] = useState(0);
+    const [ view, setView ] = useState('');
+
+
+    React.useEffect(() => {
+        if (type == 'brand' || type == 'making') {
+            document.getElementById('pw').style.display = 'none';
+
+            const currentWindowWidth = window.innerWidth;
+            const top_span = document.getElementById('top-span');
+            const middle_span = document.getElementById('middle-span');
+            const base_span = document.getElementById('base-span');
+
+            let hp;
+            if (currentWindowWidth >= 1120) hp = 5.88;
+            else if (currentWindowWidth < 1120 && currentWindowWidth >=  670) hp = 4.4;
+            else hp = 2.6;
+
+            top_span.style.height = (progressTop) * hp + 'px';
+            middle_span.style.height = (progressMiddle) * hp + 'px';
+            base_span.style.height = (progressBase) * hp + 'px';
+        }
+    })
 
     const CloseButtonStyle = {
         position: 'absolute',
@@ -19,20 +90,9 @@ const FragranceComponentPage = () => {
         zIndex: 3
     };
 
-
-    const [ currentNote, setCurrentNote ] = useState('top');
-
     const BottleProgress = {
         MAX: 50
     };
-
-
-    const [ topFragrances, setTopFragrance ] = useState('');
-    const [ middleFragrances, setMiddleFragrance ] = useState('');
-    const [ baseFragrances, setBaseFragrance ] = useState('');
-    const [ progressTop, setTopProgress ] = useState(0);
-    const [ progressMiddle, setMiddleProgress ] = useState(0);
-    const [ progressBase, setBaseProgress ] = useState(0);
     
     
     const COLOR = {
@@ -111,6 +171,13 @@ const FragranceComponentPage = () => {
             switch(currentNote) {
                 case 'top':
                     if (progressTop + type <= 15 && progressTop + type >= 0) {
+                        if (topFragrances.indexOf(clickedFragrance) == -1 && type < 0) {
+                            alert('추가하지 않는 향료입니다');
+                            return;
+                        }
+                        if (topFragrances.indexOf(clickedFragrance) != -1) {
+                            topFragrances.split()
+                        }
                         top_span.style.height = (progressTop + type) * hp + 'px';
                         setTopProgress(progressTop + type);
                         if (topFragrances.indexOf(clickedFragrance) == -1) {
@@ -338,10 +405,6 @@ const FragranceComponentPage = () => {
         }
     }
 
-
-    const [ clickedFragrance, setClickedFragrance ] = useState('');
-    const [ clickedOffset, setClickedOffset ] = useState(0);
-
     const [ allData, setAllData ] = useState(FragrancesList);
     const [ filteredData, setFilteredData ] = useState(allData);
 
@@ -375,7 +438,7 @@ const FragranceComponentPage = () => {
                                             let tmp = e.split('.');
                                             if (e[0] == undefined) return;
                                             return (
-                                                <span key={index} style={{width: 'fit-content', textAlign: 'left'}}>{tmp[0] + ' (' + tmp[1] + 'ml)' + (index != topFragrances.split('/').length - 1? ',\u00a0' : '')}</span>
+                                                <span key={index} style={{width: 'fit-content', textAlign: 'left'}}>{tmp[0] + ' (' + tmp[1] + 'ml)' + (index != topFragrances.split('/').length - 2? ',\u00a0' : '')}</span>
                                             )
                                         })
                                     }
@@ -387,7 +450,7 @@ const FragranceComponentPage = () => {
                                             let tmp = e.split('.');
                                             if (e[0] == undefined) return;
                                             return (
-                                                <span key={index} style={{width: 'fit-content', textAlign: 'left'}}>{tmp[0] + ' (' + tmp[1] + 'ml)' + (index != middleFragrances.split('/').length - 1? ',\u00a0' : '')}</span>
+                                                <span key={index} style={{width: 'fit-content', textAlign: 'left'}}>{tmp[0] + ' (' + tmp[1] + 'ml)' + (index != middleFragrances.split('/').length - 2? ',\u00a0' : '')}</span>
                                             )
                                         })
                                     }
@@ -399,7 +462,7 @@ const FragranceComponentPage = () => {
                                             let tmp = e.split('.');
                                             if (e[0] == undefined) return;
                                             return (
-                                                <span key={index} style={{width: 'fit-content', textAlign: 'left'}}>{tmp[0] + ' (' + tmp[1] + 'ml)' + (index != baseFragrances.split('/').length - 1? ',\u00a0' : '')}</span>
+                                                <span key={index} style={{width: 'fit-content', textAlign: 'left'}}>{tmp[0] + ' (' + tmp[1] + 'ml)' + (index != baseFragrances.split('/').length - 2? ',\u00a0' : '')}</span>
                                             )
                                         })
                                     }
@@ -416,7 +479,7 @@ const FragranceComponentPage = () => {
                                     * topFragrances에는 '샌달우드.5/오크모스.10' 이런식으로 문자열 형태로 저장됩니다.
                                     * 데이터베이스에 저장할 때는 이거를 json array로 부탁드립니다
                                     * mypage에 저장되는 양식이 있는데 예를 들면
-                                    * [ '향수명', [['향료명', ml]]] 이런식으로 저장되야합니다
+                                    * [ '향수명', [['향료명', ml]] ] 이런식으로 저장되야합니다
                                     * 향료는 탑, 미들, 베이스 순으로 저장되야합니다
                                     */
                                 }}>finish</FlatButton></div>
@@ -424,13 +487,52 @@ const FragranceComponentPage = () => {
                         </div>
                         
                         <div className={styles.bottleDiv}>
-                            <img src={BottleImg} alt='bottle image' className={styles.bottle}/>
+                            <img src={BottleImg} alt='bottle image' className={styles.bottle} onClick={ (event) => {
+                                const pg_wd = document.getElementById('progress-window');
+                                pg_wd.style.display = 'block';
+
+                                let tt = '[ 탑 노트 ]\n';
+                                let sssp = topFragrances.split('/');
+                                sssp.forEach( (e, index) => {
+                                    let tmp = e.split('.');
+                                    if (e[0] != undefined) {
+                                        tt += '\u00a0- ' + tmp[0] + ': ' + tmp[1] + 'ml\n';
+                                    }
+                                })
+
+                                tt += '\n[ 미들 노트 ]\n';
+
+                                sssp = middleFragrances.split('/');
+                                sssp.forEach( (e, index) => {
+                                    let tmp = e.split('.');
+                                    if (e[0] != undefined) {
+                                        tt += '\u00a0- ' + tmp[0] + ': ' + tmp[1] + 'ml\n';
+                                    }
+                                })
+
+                                tt += '\n[ 베이스 노트 ]\n';
+
+                                sssp = baseFragrances.split('/');
+                                sssp.forEach( (e, index) => {
+                                    let tmp = e.split('.');
+                                    if (e[0] != undefined) {
+                                        tt += '\u00a0- ' + tmp[0] + ': ' + tmp[1] + 'ml' + (index != sssp.length? '\n' : '');
+                                    }
+                                })
+                                setView(tt);
+                            }}/>
                             <div id='current' className={styles.current}>{BottleProgress.MAX + 'ml/' + (progressTop + progressMiddle + progressBase) + 'ml'}</div>
                             <div className={styles.BottleDescription}>* 상기 용량은 향수 종류에 따라 달라질 수 있습니다.</div>
                             <div className={styles.contentspan}>
                                 <span className={styles.inBottle} id='top-span' style={{backgroundColor: COLOR.TOP}}></span>
                                 <span className={styles.inBottle} id='middle-span' style={{backgroundColor: COLOR.MIDDLE}}></span>
                                 <span className={styles.inBottle} id='base-span' style={{backgroundColor: COLOR.BASE}}></span>
+                            </div>
+
+                            <div className={styles.progress_window} id='progress-window' onClick={ (event) => {
+                                document.getElementById('progress-window').style.display = 'none';
+                            }}>
+                                <span>{view}</span>
                             </div>
                         </div>
 
@@ -457,7 +559,7 @@ const FragranceComponentPage = () => {
                                     <div className={styles.descriptions}>미들노트는 알코올이 날아간 후에 맡게 되는 향입니다.<br/>
                                         향수를 뿌린 후, 1시간 전후의 향을 말합니다.<br/>
                                         향이 안정적이며, 다른 향과의 배합이 어우러져 풍부하고 육감적인 향이 지속됩니다.<br/>
-                                        보통 주위사람들이 느끼는 향과 가장 비슷합니다.
+                                        보통 주위사람들이 느끼는 향과 가장 비슷합니다.<br/>
                                         향수의 50~80%를 블랜딩 비율로 갖습니다.</div>
                                 </div>
 

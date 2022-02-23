@@ -202,9 +202,10 @@ const Layout = ({ pageTitle, children, title }) => {
 
 
 
-    let open = false;
-    let cat_clicked_fragrance = null;
-    let cat_clicked_offset = 0;
+    const [ opened, setOpened ] = useState(false);
+    const [ clickedFragrance, setClickedFragrance ] = useState('');
+    const [ clickedType, setClickedType ] = useState(0);
+    const [ clickedOffset, setClickedOffset ] = useState(0);
 
 
     const onTopMenuCloseListener = () => {
@@ -215,7 +216,7 @@ const Layout = ({ pageTitle, children, title }) => {
             document.getElementById('nav-button').style.right = '0';
         }
         document.getElementById('top-menu').style.transform = 'scaleY(0)';
-        open = false;
+        setOpened(false);
     };
 
     const onTopMenuOpenListener = (event) => {
@@ -226,12 +227,12 @@ const Layout = ({ pageTitle, children, title }) => {
             event.target.style.right = '-80px';
         }
         document.getElementById('top-menu').style.transform = 'scaleY(1)';
-        open = true;
+        setOpened(true);
     };
 
 
     const onNavClickListener = (event) => {
-        if (open) {
+        if (opened) {
             onTopMenuCloseListener();
         }
         else {
@@ -273,7 +274,7 @@ const Layout = ({ pageTitle, children, title }) => {
                         onTopMenuCloseListener();
                         document.getElementById('category-popup').style.display = 'block';
                     }}>category</button>
-                    <button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>review</button>
+                    <Link to='/review'><button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>review</button></Link>
                     <Link to='/mypage'><button className={styles.TopMenuButton} onClick={ () => onTopMenuCloseListener() }>my page</button></Link>
                 </div>
                 <button id='nav-button' className={styles.NavButton} onMouseEnter={ event => onTopMenuOpenListener(event) } onClick={ event => onNavClickListener(event)}><span className="material-icons" style={navButtonStyle}>menu</span></button>
@@ -310,15 +311,15 @@ const Layout = ({ pageTitle, children, title }) => {
                                                             let desc = document.getElementById("category-detail-description-" + thiz_id);
                                                             let boxx = document.getElementById('category-box-' + thiz_id);
                                                             
-                                                            if (cat_clicked_fragrance != null) {
-                                                                if (cat_clicked_offset < boxx.offsetTop) {
+                                                            if (clickedFragrance != '') {
+                                                                if (clickedOffset < boxx.offsetTop) {
                                                                     offset_y -= 200;
                                                                 }
                                                                 else {
                                                                     offset_y = 0;
                                                                 }
                                                                 
-                                                                if (cat_clicked_fragrance != thiz_id) document.getElementById(cat_clicked_fragrance).click();
+                                                                if (clickedFragrance != thiz_id) document.getElementById(clickedFragrance).click();
                                                             }
 
                                                             offset_y += boxx.offsetTop + 200;
@@ -326,16 +327,18 @@ const Layout = ({ pageTitle, children, title }) => {
                                                             if (clicked) {
                                                                 desc.style.transform = 'scaleY(0)';
                                                                 boxx.style.marginBottom = '0';
-                                                                cat_clicked_fragrance = null;
-                                                                cat_clicked_offset = null;
+                                                                setClickedFragrance('');
+                                                                setClickedOffset(0);
+                                                                setClickedType(0);
                                                                 boxx.style.backgroundColor = '#FEFEE3';
                                                             }
                                                             else {
                                                                 desc.style.top = offset_y + 'px';
-                                                                desc.style.width = document.getElementById('cat-ele').offsetWidth;
+                                                                desc.style.width = document.getElementById('cat-ele').offsetWidth - 42 + 'px';
                                                                 boxx.style.marginBottom = '210px';
-                                                                cat_clicked_fragrance = thiz_id;
-                                                                cat_clicked_offset = boxx.offsetTop;
+                                                                setClickedFragrance(thiz_id);
+                                                                setClickedOffset(boxx.offsetTop);
+                                                                setClickedType(index);
                                                                 desc.style.transform = 'scaleY(1)';
                                                                 boxx.style.backgroundColor = '#FFFFFF';
                                                             }

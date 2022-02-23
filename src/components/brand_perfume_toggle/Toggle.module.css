@@ -7,5 +7,16 @@
     justify-content: left;
     align-items: center;
     margin: 10px 0;
+}
+
+.toggle {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    cursor: pointer;
+}
+
+.down {
+    margin-left: 20px;
     cursor: pointer;
 }

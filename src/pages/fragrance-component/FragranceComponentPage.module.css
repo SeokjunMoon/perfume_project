@@ -335,6 +335,25 @@
     height: calc(100vh - 100px);
 }
 
+.progress_window {
+    position: absolute;
+    border: 1px solid #1F2421;
+    width: fit-content;
+    height: fit-content;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: 'MapoFlowerIsland';
+    font-size: 18px;
+    display: none;
+    white-space: pre-wrap;
+    text-align: left;
+    padding: 20px 20px;
+}
+
 
 @media screen and (min-width: 1440px) {
     .PopupWindow {

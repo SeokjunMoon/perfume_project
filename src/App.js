@@ -8,6 +8,7 @@ import FindPage from './pages/login/find'
 import MyPage from './pages/mypage/MyPage'
 import MyInfo from './pages/mypage/myinfo'
 import PerfumeRecipe from './pages/perfume-recipe/recipe'
+import ReviewPage from './pages/review/review'
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path='/mypage/find-account' element={<FindPage />} />
                 <Route path='/mypage/information' element={<MyInfo />} />
                 <Route path='/perfume-recipe' element={<PerfumeRecipe />} />
+                <Route path='/review' element={<ReviewPage />} />
             </Routes>
         </Fragment>
     );
