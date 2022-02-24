@@ -57,7 +57,10 @@ const FragranceComponentPage = () => {
     
     const [ clickedFragrance, setClickedFragrance ] = useState('');
     const [ clickedOffset, setClickedOffset ] = useState(0);
-    const [ view, setView ] = useState('');
+    const [ noteTitle, setNoteTitle ] = useState('탑노트');
+    const [ noteDescription, setNoteDescription ] = useState('10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!');
+    const [ noteMilli, setNoteMilli ] = useState('(5~20ml)');
+    const [ viewCurrent, setViewCurrent ] = useState('[ 탑 노트 ]\n\n[ 미들 노트 ]\n\n[ 베이스 노트 ]\n');
 
 
     React.useEffect(() => {
@@ -111,25 +114,21 @@ const FragranceComponentPage = () => {
         event.target.style.borderBottom = '4px solid #2C6E49';
         setCurrentNote('' + event.target.id);
 
-        const note_title = document.getElementById('current-note-title');
-        const note_description = document.getElementById('current-note-description');
-        const note_milli = document.getElementById('note-milli');
-
-        switch(currentNote) {
+        switch(event.target.id) {
             case 'top':
-                note_title.innerHTML = '탑노트';
-                note_description.innerHTML = '10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!';
-                note_milli.innerHTML = '(5~20ml)';
+                setNoteTitle('탑노트');
+                setNoteDescription('10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!');
+                setNoteMilli('(5~20ml)');
                 break;
             case 'middle':
-                note_title.innerHTML = '미들노트';
-                note_description.innerHTML = '2~3시간 전후에 나타나는 향으로 향수 주제를 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!';
-                note_milli.innerHTML = '(50~80ml)';
+                setNoteTitle('미들노트');
+                setNoteDescription('2~3시간 전후에 나타나는 향으로 향수 주제를 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!');
+                setNoteMilli('(50~80ml)');
                 break;
             case 'base':
-                note_title.innerHTML = '베이스노트';
-                note_description.innerHTML = '1시간 전후에 나타나는 향으로 잔향을 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!';
-                note_milli.innerHTML = '(50~80ml)';
+                setNoteTitle('베이스노트');
+                setNoteDescription('1시간 전후에 나타나는 향으로 잔향을 결정합니다.\n향료를 선택하여 나만의 향수를 만들어보세요!');
+                setNoteMilli('(50~80ml)');
                 break;
         }
     };
@@ -162,6 +161,11 @@ const FragranceComponentPage = () => {
         }
 
         else {
+            if (clickedFragrance == '') {
+                alert('향료를 선택해주세요.');
+                return;
+            }
+
             const currentWindowWidth = window.innerWidth;
             let hp;
             if (currentWindowWidth >= 1120) hp = 5.88;
@@ -171,23 +175,30 @@ const FragranceComponentPage = () => {
             switch(currentNote) {
                 case 'top':
                     if (progressTop + type <= 15 && progressTop + type >= 0) {
-                        if (topFragrances.indexOf(clickedFragrance) == -1 && type < 0) {
-                            alert('추가하지 않는 향료입니다');
-                            return;
-                        }
-                        if (topFragrances.indexOf(clickedFragrance) != -1) {
-                            topFragrances.split()
-                        }
-                        top_span.style.height = (progressTop + type) * hp + 'px';
-                        setTopProgress(progressTop + type);
                         if (topFragrances.indexOf(clickedFragrance) == -1) {
-                            setTopFragrance(topFragrances + '/' + clickedFragrance + '.' + type);
+                            if (type < 0) {
+                                alert('추가하지 않는 향료입니다');
+                                return;
+                            }
+                            else if (type > 0) {
+                                setTopFragrance(topFragrances + '/' + clickedFragrance + '.' + type);
+                                top_span.style.height = (progressTop + type) * hp + 'px';
+                                setTopProgress(progressTop + type);
+                            }
                         }
                         else {
                             let tmp = topFragrances.split('/').map( e => {
                                 let ssp = e.split('.');
                                 if (ssp[0] == clickedFragrance) {
-                                    return (ssp[0] + '.' + (parseInt(ssp[1]) + type));
+                                    if (parseInt(ssp[1]) + type < 0) {
+                                        alert(type + 'ml 만큼 뺄 수 없습니다.');
+                                        return e;
+                                    }
+                                    else {
+                                        top_span.style.height = (progressTop + type) * hp + 'px';
+                                        setTopProgress(progressTop + type);
+                                        return (ssp[0] + '.' + (parseInt(ssp[1]) + type));
+                                    }
                                 }
                                 return e;
                             });
@@ -197,16 +208,30 @@ const FragranceComponentPage = () => {
                     break;
                 case 'middle':
                     if (progressMiddle + type <= 25 && progressMiddle + type >= 0) {
-                        middle_span.style.height = (progressMiddle + type) * hp + 'px';
-                        setMiddleProgress(progressMiddle + type);
                         if (middleFragrances.indexOf(clickedFragrance) == -1) {
-                            setMiddleFragrance(middleFragrances + '/' + clickedFragrance + '.' + type);
+                            if (type < 0) {
+                                alert('추가하지 않는 향료입니다');
+                                return;
+                            }
+                            else if (type > 0) {
+                                setMiddleFragrance(middleFragrances + '/' + clickedFragrance + '.' + type);
+                                middle_span.style.height = (progressMiddle + type) * hp + 'px';
+                                setMiddleProgress(progressMiddle + type);
+                            }
                         }
                         else {
                             let tmp = middleFragrances.split('/').map( e => {
                                 let ssp = e.split('.');
                                 if (ssp[0] == clickedFragrance) {
-                                    return (ssp[0] + '.' + (parseInt(ssp[1]) + type));
+                                    if (parseInt(ssp[1]) + type < 0) {
+                                        alert(type + 'ml 만큼 뺄 수 없습니다.');
+                                        return e;
+                                    }
+                                    else {
+                                        middle_span.style.height = (progressMiddle + type) * hp + 'px';
+                                        setMiddleProgress(progressMiddle + type);
+                                        return (ssp[0] + '.' + (parseInt(ssp[1]) + type));
+                                    }
                                 }
                                 return e;
                             });
@@ -216,16 +241,30 @@ const FragranceComponentPage = () => {
                     break;
                 case 'base':
                     if (progressBase + type <= 10 && progressBase + type >= 0) {
-                        base_span.style.height = (progressBase + type) * hp + 'px';
-                        setBaseProgress(progressBase + type);
                         if (baseFragrances.indexOf(clickedFragrance) == -1) {
-                            setBaseFragrance(baseFragrances + '/' + clickedFragrance + '.' + type);
+                            if (type < 0) {
+                                alert('추가하지 않는 향료입니다');
+                                return;
+                            }
+                            else if (type > 0) {
+                                setBaseFragrance(baseFragrances + '/' + clickedFragrance + '.' + type);
+                                base_span.style.height = (progressBase + type) * hp + 'px';
+                                setBaseProgress(progressBase + type);
+                            }
                         }
                         else {
                             let tmp = baseFragrances.split('/').map( e => {
                                 let ssp = e.split('.');
                                 if (ssp[0] == clickedFragrance) {
-                                    return (ssp[0] + '.' + (parseInt(ssp[1]) + type));
+                                    if (parseInt(ssp[1]) + type < 0) {
+                                        alert(type + 'ml 만큼 뺄 수 없습니다.');
+                                        return e;
+                                    }
+                                    else {
+                                        base_span.style.height = (progressBase + type) * hp + 'px';
+                                        setBaseProgress(progressBase + type);
+                                        return (ssp[0] + '.' + (parseInt(ssp[1]) + type));
+                                    }
                                 }
                                 return e;
                             });
@@ -235,6 +274,40 @@ const FragranceComponentPage = () => {
                     break;
             }
         }
+
+        changeView();
+    };
+
+
+    async function changeView() {
+        let tt = '[ 탑 노트 ]\n';
+
+        topFragrances.split('/').forEach( (e) => {
+            let tmp = e.split('.');
+            if (e[0] != undefined) {
+                tt += '\u00a0- ' + tmp[0] + ': ' + tmp[1] + 'ml\n';
+            }
+        })
+
+        tt += '\n[ 미들 노트 ]\n';
+
+        middleFragrances.split('/').forEach( (e) => {
+            let tmp = e.split('.');
+            if (e[0] != undefined) {
+                tt += '\u00a0- ' + tmp[0] + ': ' + tmp[1] + 'ml\n';
+            }
+        })
+
+        tt += '\n[ 베이스 노트 ]\n';
+
+        baseFragrances.split('/').forEach( (e, index) => {
+            let tmp = e.split('.');
+            if (e[0] != undefined) {
+                tt += '\u00a0- ' + tmp[0] + ': ' + tmp[1] + 'ml' + (index != baseFragrances.split('/').length? '\n' : '');
+            }
+        })
+
+        setViewCurrent(tt);
     };
 
     const FragrancesList = [ //top, middle, base 순서
@@ -419,6 +492,7 @@ const FragranceComponentPage = () => {
                         <span style={{fontSize: '40px'}}>나만의 향수가 저장되었습니다!</span>
                         <div style={{marginTop: '100px'}}><FlatButton color='#4C956C' highlight='#2C6E49' width='300px' height='100%' style={{fontSize: '24px', padding: '12px 16px'}} onClick={(event) => {
                             document.getElementById('making-content-div').style.display = 'none';
+                            window.location.href = '/mypage';
                         }}>{'나만의 향수 보러가기 ->'}</FlatButton></div>
                     </div>
 
@@ -490,49 +564,20 @@ const FragranceComponentPage = () => {
                             <img src={BottleImg} alt='bottle image' className={styles.bottle} onClick={ (event) => {
                                 const pg_wd = document.getElementById('progress-window');
                                 pg_wd.style.display = 'block';
-
-                                let tt = '[ 탑 노트 ]\n';
-                                let sssp = topFragrances.split('/');
-                                sssp.forEach( (e, index) => {
-                                    let tmp = e.split('.');
-                                    if (e[0] != undefined) {
-                                        tt += '\u00a0- ' + tmp[0] + ': ' + tmp[1] + 'ml\n';
-                                    }
-                                })
-
-                                tt += '\n[ 미들 노트 ]\n';
-
-                                sssp = middleFragrances.split('/');
-                                sssp.forEach( (e, index) => {
-                                    let tmp = e.split('.');
-                                    if (e[0] != undefined) {
-                                        tt += '\u00a0- ' + tmp[0] + ': ' + tmp[1] + 'ml\n';
-                                    }
-                                })
-
-                                tt += '\n[ 베이스 노트 ]\n';
-
-                                sssp = baseFragrances.split('/');
-                                sssp.forEach( (e, index) => {
-                                    let tmp = e.split('.');
-                                    if (e[0] != undefined) {
-                                        tt += '\u00a0- ' + tmp[0] + ': ' + tmp[1] + 'ml' + (index != sssp.length? '\n' : '');
-                                    }
-                                })
-                                setView(tt);
+                                changeView();
                             }}/>
                             <div id='current' className={styles.current}>{BottleProgress.MAX + 'ml/' + (progressTop + progressMiddle + progressBase) + 'ml'}</div>
                             <div className={styles.BottleDescription}>* 상기 용량은 향수 종류에 따라 달라질 수 있습니다.</div>
                             <div className={styles.contentspan}>
-                                <span className={styles.inBottle} id='top-span' style={{backgroundColor: COLOR.TOP}}></span>
-                                <span className={styles.inBottle} id='middle-span' style={{backgroundColor: COLOR.MIDDLE}}></span>
-                                <span className={styles.inBottle} id='base-span' style={{backgroundColor: COLOR.BASE}}></span>
+                                <span className={styles.inBottle} id='top-span' style={{backgroundColor: COLOR.TOP, width: '100%', height: '0'}}></span>
+                                <span className={styles.inBottle} id='middle-span' style={{backgroundColor: COLOR.MIDDLE, width: '100%', height: '0'}}></span>
+                                <span className={styles.inBottle} id='base-span' style={{backgroundColor: COLOR.BASE, width: '100%', height: '0'}}></span>
                             </div>
 
                             <div className={styles.progress_window} id='progress-window' onClick={ (event) => {
                                 document.getElementById('progress-window').style.display = 'none';
                             }}>
-                                <span>{view}</span>
+                                <span id='current-pw-span'>{viewCurrent}</span>
                             </div>
                         </div>
 
@@ -594,8 +639,8 @@ const FragranceComponentPage = () => {
                             
                             <div style={{padding: '4px 4px', marginTop: '6px', backgroundColor: '#FFFFFF', borderRadius: '20px'}}>
                                 <div className={styles.NoteDescription}>
-                                    <div className={styles.currentTitle} style={{fontSize: '26px', paddingBottom: '10px', fontWeight: '600'}}><span id='current-note-title'>탑노트</span><span>란?</span><span id='note-milli' style={{fontSize: '12px', paddingLeft: '5px'}}>(5~20ml)</span></div>
-                                    <div id='current-note-description' className={styles.currentDescription} style={{fontSize: '18px'}}>뿌린 뒤 10분 전후에 나타나는 향으로 향의 첫인상을 결정합니다.<br/>향료를 선택하여 나만의 향수를 만들어 보세요!</div>
+                                    <div className={styles.currentTitle} style={{fontSize: '26px', paddingBottom: '10px', fontWeight: '600'}}><span id='current-note-title'>{noteTitle}</span><span>란?</span><span id='note-milli' style={{fontSize: '12px', paddingLeft: '5px'}}>{noteMilli}</span></div>
+                                    <div id='current-note-description' className={styles.currentDescription} style={{fontSize: '18px'}}>{noteDescription}</div>
                                 </div>
                             </div>
 

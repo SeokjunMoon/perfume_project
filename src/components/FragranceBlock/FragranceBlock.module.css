@@ -21,9 +21,11 @@
 .title {
     font-size: 18px;
     margin-bottom: 4px;
+    color: #000000;
 }
 
 .description {
     font-size: 14px;
     height: 34px;
+    color: #000000;
 }

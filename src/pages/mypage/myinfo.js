@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from './myinfo.module.css'
 import Layout from '../../components/main_layout/Layout'
 import FlatButton from '../../components/flat_button/FlatButton'
@@ -13,16 +13,24 @@ const MyInfo = () => {
         NAME: '홍길동',
         RESIDENT_REGISTRATION_NUMBER: '010101-3*****',
         ID: 'abc123',
-        PW: '12345',
+        PW: '12345678',
         POST: {
             NUMBER: 12345,
-            ADRESS: '부산광역시 프로젝트구 향수로 4번길 행복동 힘내호'
+            ADDRESS: '부산광역시 프로젝트구 향수로 4번길 행복동 힘내호'
         },
         PHONE_NUMBER: {
             AGENCY: 'SKT',
             NUMBER: ['010', '1234', '5678']
         }
     };
+
+    
+    const [ password, setPassword ] = useState(USER_INFORMATION.PW);
+    const [ passwordCheck, setPasswordCheck ] = useState(USER_INFORMATION.PW);
+    const [ postNumber, setPostNumber ] = useState(USER_INFORMATION.POST.NUMBER);
+    const [ postAddress, setPostAddress ] = useState(USER_INFORMATION.POST.ADDRESS);
+    const [ phoneAgency, setAgency ] = useState(USER_INFORMATION.PHONE_NUMBER.AGENCY);
+    const [ phoneNumber, setPhoneNumber ] = useState(USER_INFORMATION.PHONE_NUMBER.NUMBER);
 
 
     const IconStyle = {
@@ -31,11 +39,52 @@ const MyInfo = () => {
 
     const ConfirmButtonListener = () => {
         let current = document.getElementById('pw-confirm').value;
-        if (current == USER_INFORMATION.PW) {
+        if (current == password) {
             document.getElementById('checking').style.display = 'none';
             document.getElementById('my-info-contents').style.display = 'grid';
+            document.getElementById('mypage-information-submit').style.display = 'block';
         }
     };
+
+    const onChangeHandler = (event, type) => {
+        switch(type) {
+            case 'password':
+                setPassword(event.target.value);
+                break;
+            case 'password-check':
+                setPasswordCheck(event.target.value);
+                break;
+            case 'post-number':
+                setPostNumber(parseInt(event.target.value));
+                break;
+            case 'post-address':
+                setPostAddress(event.target.value);
+            case 'phone-number-0':
+                setPhoneNumber(phoneNumber.map( (e, index) => {
+                    if (index == 0) {
+                        return event.target.value;
+                    }
+                    return e;
+                }));
+                break;
+            case 'phone-number-1':
+                setPhoneNumber(phoneNumber.map( (e, index) => {
+                    if (index == 1) {
+                        return event.target.value;
+                    }
+                    return e;
+                }));
+                break;
+            case 'phone-number-2':
+                    setPhoneNumber(phoneNumber.map( (e, index) => {
+                        if (index == 2) {
+                            return event.target.value;
+                        }
+                        return e;
+                    }));
+                    break;
+        }
+    }
 
 
     return (
@@ -61,13 +110,13 @@ const MyInfo = () => {
 
                 <span className={styles.text_title}>비밀번호</span>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <input type='password' placeholder='PW' className={styles.InputPlace} minLength='8' maxLength='15' value={USER_INFORMATION.PW}/>
+                    <input type='password' placeholder='PW' className={styles.InputPlace} minLength='8' maxLength='15' value={password} onChange={ event => onChangeHandler(event, 'password')}/>
                     <span className={styles.description}>8~15자리 입력, 영문과 숫자 반드시 입력</span>
                 </div>
 
                 <span className={styles.text_title}>비밀번호 확인</span>
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <input type='password' placeholder='PW' className={styles.InputPlace} minLength='8' maxLength='15' value={USER_INFORMATION.PW}/>
+                    <input type='password' placeholder='PW' className={styles.InputPlace} minLength='8' maxLength='15' value={passwordCheck} onChange={ event => onChangeHandler(event, 'password-check')}/>
                     <span className={styles.description}>비밀번호 확인</span>
                 </div>
 
@@ -75,9 +124,9 @@ const MyInfo = () => {
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     <div style={{display: 'flex', marginBottom: '10px'}}>
                         <button className={styles.PostNumberButton}>우편번호</button>
-                        <input type='text' placeholder='PW' className={styles.InputPlace} minLength='8' maxLength='15' value={USER_INFORMATION.POST.NUMBER}/>
+                        <input type='text' placeholder='PW' className={styles.InputPlace} minLength='8' maxLength='15' value={postNumber} onChange={ event => onChangeHandler(event, 'post-number')}/>
                     </div>
-                    <input type='text' placeholder='주소' className={styles.InputPlace} minLength='8' maxLength='15' value={USER_INFORMATION.POST.ADRESS}/>
+                    <input type='text' placeholder='주소' className={styles.InputPlace} minLength='8' maxLength='15' value={postAddress} onChange={ event => onChangeHandler(event, 'post-address')}/>
                     <span className={styles.description}>주소 입력</span>
                 </div>
 
@@ -85,16 +134,24 @@ const MyInfo = () => {
                 <div style={{display: 'flex'}}>
                     <div style={{display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '600px'}}>
                         <div className={styles.phone_number}>
-                            <button className={styles.AgencyButton}><span className="material-icons" style={IconStyle}>expand_more</span>{USER_INFORMATION.PHONE_NUMBER.AGENCY}</button>
-                            <input type='text' pattern="[0-9]+" placeholder="" className={styles.InputPlace} maxLength='3'/>
+                            <button className={styles.AgencyButton}><span className="material-icons" style={IconStyle}>expand_more</span>{phoneAgency}</button>
+                            <input type='text' pattern="[0-9]+" placeholder="" value={phoneNumber[0]} className={styles.InputPlace} maxLength='3' onChange={ event => onChangeHandler(event, 'phone-number-0')}/>
+
                             <div style={{fontSize: '30px', color: '#054A29', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>-</div>
-                            <input type='text' pattern="[0-9]+" placeholder="" className={styles.InputPlace} maxLength='4'/>
+                            <input type='text' pattern="[0-9]+" placeholder="" value={phoneNumber[1]} className={styles.InputPlace} maxLength='4' onChange={ event => onChangeHandler(event, 'phone-number-1')}/>
+
                             <div style={{fontSize: '30px', color: '#054A29', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>-</div>
-                            <input type='text' pattern="[0-9]+" placeholder="" className={styles.InputPlace} maxLength='4'/>
+                            <input type='text' pattern="[0-9]+" placeholder="" value={phoneNumber[2]} className={styles.InputPlace} maxLength='4' onChange={ event => onChangeHandler(event, 'phone-number-2')}/>
                         </div>
                     </div>
                 </div>
             </div>
+            <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '100px'}}><button id='mypage-information-submit' className={styles.submit} onClick={ (event) => {
+                /*
+                * 변경된 정보 저장하는 부분입니다
+                */
+               alert('변경 완료!');
+            }}>완료</button></div>
         </Layout>
     )
 }

@@ -280,6 +280,7 @@
     background-color: #FFFFFF;
     padding: 12px 12px;
     text-align: left;
+    overflow: auto;
 }
 
 .FinishPopup {
@@ -324,21 +325,21 @@
 
 .saving {
     display: none;
-    margin: auto auto;
+    margin: 200px auto 0 auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    /* position: absolute;
     top: 0;
     left: 20px;
     width: calc(100vw - 80px);
-    height: calc(100vh - 100px);
+    height: calc(100vh - 100px); */
 }
 
 .progress_window {
     position: absolute;
     border: 1px solid #1F2421;
-    width: fit-content;
+    width: 200px;
     height: fit-content;
     top: 0;
     left: 0;
