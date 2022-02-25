@@ -2,6 +2,7 @@
     font-family: 'MapoFlowerIsland';
     src: url('../../fonts/MapoFlowerIsland.ttf') format('truetype');
 }
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
 
 :root {
@@ -37,7 +38,7 @@
 
 body {
     background-color: var(--main-background-color);
-    font-family: 'MapoFlowerIsland';
+    font-family: 'Gowun Dodum', sans-serif;
     margin: 0;
     padding: 0;
     min-width: 340px;
@@ -137,7 +138,7 @@ body::-webkit-scrollbar{
     color: var(--color-signature-green);
     font-size: 20px;
     padding: 4px 24px;
-    font-family: 'MapoFlowerIsland';
+    font-family: 'Gowun Dodum', sans-serif;
     cursor: pointer;
 }
 .TopMenuButton:hover {

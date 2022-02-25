@@ -198,7 +198,7 @@
     margin: 10px 0;
     width: 100px;
     height: 40px;
-    font-family: 'MapoFlowerIsland';
+    font-family: 'Gowun Dodum', sans-serif;
     font-size: 16px;
     background-color: transparent;
 }
@@ -293,13 +293,14 @@
     border-radius: 40px;
     border: 1px solid var(--color-signature-darkgreen);
     z-index: 10;
-    width: inherit;
+    width: 100%;
 }
 
 .FinishBottle {
     object-fit: scale-down;
-    width: 120px;
+    height: calc(70%);
     margin-right: 40px;
+    padding: 0 0;
 }
 
 .finishInput {
@@ -311,7 +312,7 @@
     height: 150px;
     padding: 12px 18px;
     margin: 50px 0 0 0;
-    width: 100%;
+    width: 500px;
 }
 
 .realFinish {
@@ -347,7 +348,7 @@
     background-color: #FFFFFF;
     box-sizing: border-box;
     border-radius: 10px;
-    font-family: 'MapoFlowerIsland';
+    font-family: 'Gowun Dodum', sans-serif;
     font-size: 18px;
     display: none;
     white-space: pre-wrap;
